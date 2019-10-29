@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @ResponseBody
+// test
 public class SurveyController {
 		
 	@RequestMapping("*")
