@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Kysymys {
@@ -19,6 +20,12 @@ public class Kysymys {
 	
 	@JoinColumn(name="kyselyid")
 	private Kysely kysely;
+	
+	@Transient
+	public static final String TYPE_SHORT_TEXT = "short_text";
+	
+	@Transient
+	public static final String TYPE_NUMBER = "number";
 
 	public Kysymys() {
 		super();
