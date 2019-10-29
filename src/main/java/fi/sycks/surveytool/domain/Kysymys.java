@@ -19,7 +19,6 @@ public class Kysymys {
 	private String tyyppi;
 	
 	@ManyToOne
-	@JsonIgnore
 	
 	@JoinColumn(name="kyselyid")
 	private Kysely kysely;
