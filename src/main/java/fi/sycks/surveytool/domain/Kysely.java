@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Kysely {
@@ -19,6 +20,12 @@ public class Kysely {
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy = "kysymys")
 	private List<Kysymys> kysymykset;
+	
+	@Transient
+	public static final String STATUS_DEPLOYED = "UP";
+	
+	@Transient
+	public static final String STATUS_NOT_DEPLOYED = "DOWN";
 	
 	public Kysely() {}
 
