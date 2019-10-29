@@ -27,6 +27,14 @@ public class Kysely {
 		this.kyselynimi = kyselynimi;
 		this.deployattu = deployattu;
 	}
+	
+
+	public Kysely(Long kyselyid, String kyselynimi, String deployattu) {
+		super();
+		this.kyselyid = kyselyid;
+		this.kyselynimi = kyselynimi;
+		this.deployattu = deployattu;
+	}
 
 	public void setKyselyid(Long kyselyid) {
 		this.kyselyid = kyselyid;
