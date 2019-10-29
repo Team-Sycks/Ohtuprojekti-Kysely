@@ -18,7 +18,7 @@ public class Kysely {
 	private String kyselynimi;
 	private String deployattu;
 	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "kysymys")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy ="kysely")
 	private List<Kysymys> kysymykset;
 	
 	@Transient

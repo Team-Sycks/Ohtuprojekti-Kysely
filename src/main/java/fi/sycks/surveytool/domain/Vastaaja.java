@@ -16,7 +16,7 @@ public class Vastaaja {
 	private Long vastaajaid;
 	private String vastausaika;
 	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "vastaus")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "vastaaja")
 	private List<Vastaus> vastaukset;
 	
 	public Vastaaja() {}
