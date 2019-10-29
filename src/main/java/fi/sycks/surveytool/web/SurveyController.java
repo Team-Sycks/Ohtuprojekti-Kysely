@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.sycks.surveytool.domain.Kysely;
 import fi.sycks.surveytool.domain.Kysymys;
+import fi.sycks.surveytool.domain.UserRepository;
 import fi.sycks.surveytool.interfaces.KyselyRepository;
 import fi.sycks.surveytool.interfaces.KysymysRepository;
 
@@ -22,6 +23,11 @@ public class SurveyController {
 	@Autowired
 	private KysymysRepository kysymysRepository;
 	
+	
+	@RequestMapping(value="/login")
+	public String login() {
+		return "login";
+	}
 	@RequestMapping("*")
 	public String hello() {
 		
