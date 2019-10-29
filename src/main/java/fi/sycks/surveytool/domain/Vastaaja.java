@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Vastaaja {
 	@Id
@@ -16,6 +18,7 @@ public class Vastaaja {
 	private Long vastaajaid;
 	private String vastausaika;
 	
+	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, mappedBy = "vastaaja")
 	private List<Vastaus> vastaukset;
 	

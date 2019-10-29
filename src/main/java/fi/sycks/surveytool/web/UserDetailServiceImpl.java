@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import fi.sycks.surveytool.domain.User;
-import fi.sycks.surveytool.domain.UserRepository;
+import fi.sycks.surveytool.interfaces.UserRepository;
 
 
 

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Kysely {
 	@Id
@@ -18,14 +20,17 @@ public class Kysely {
 	private String kyselynimi;
 	private String deployattu;
 	
+	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, mappedBy ="kysely")
 	private List<Kysymys> kysymykset;
 	
+	@JsonIgnore
 	@Transient
-	public static final String STATUS_DEPLOYED = "UP";
+	public static final String STATUS_DEPLOYED = "Ylhäällä";
 	
+	@JsonIgnore
 	@Transient
-	public static final String STATUS_NOT_DEPLOYED = "DOWN";
+	public static final String STATUS_NOT_DEPLOYED = "Alhaalla";
 	
 	public Kysely() {}
 

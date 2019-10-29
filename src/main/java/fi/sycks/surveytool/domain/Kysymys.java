@@ -8,8 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Kysymys {
 	@Id
@@ -19,7 +17,6 @@ public class Kysymys {
 	private String tyyppi;
 	
 	@ManyToOne
-	
 	@JoinColumn(name="kyselyid")
 	private Kysely kysely;
 	
@@ -30,11 +27,6 @@ public class Kysymys {
 	public static final String TYPE_NUMBER = "number";
 
 	public Kysymys() {
-		super();
-		this.kysymysid = null;
-		this.teksti = null;
-		this.tyyppi = null;
-		this.kysely = kysely;
 	}
 
 	public Kysymys(Long kysymysid, String teksti, String tyyppi, Kysely kysely) {
@@ -92,8 +84,5 @@ public class Kysymys {
 		else
 			return "Kysymys [kysymysid=" + kysymysid + ", teksti=" + teksti + ", tyyppi=" + tyyppi + "]";
 	}
-	
-	
-	
 
 }
