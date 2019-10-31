@@ -1,9 +1,12 @@
 package fi.sycks.surveytool.web;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -60,5 +63,23 @@ public class SurveyController {
 	@RequestMapping("/api/vastaus")
 	public @ResponseBody List<Vastaus> getAllVastausREST(){
 		return (List<Vastaus>) vastausRepository.findAll();
+	}
+	
+	@RequestMapping("/api/vastaus/kyselyid/{kyselyid}")
+	public @ResponseBody List<Vastaus> getAllVastausByKyselyREST(@PathVariable("kyselyid") long kyselyid) {
+		List<Vastaus> vastaukset =  (List<Vastaus>) vastausRepository.findAll();
+		Optional<Kysely> kysely = kyselyRepository.findById(kyselyid);
+		
+		List<Vastaus> kyselyVastaukset = new ArrayList<>();
+		if(!kysely.isEmpty()) {
+			for(Vastaus vastaus : vastaukset) {
+				Kysymys kysymys = vastaus.getKysymys();
+				if(kysymys.getKysely().getKyselyid() == kysely.get().getKyselyid()) {
+					kyselyVastaukset.add(vastaus);
+				}
+			}		
+		}
+		
+		return kyselyVastaukset;
 	}
 }
