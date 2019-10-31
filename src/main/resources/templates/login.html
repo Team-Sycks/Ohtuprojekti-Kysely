@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>Kirjaudu sisään</title>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+		<div class="alert alert-warning" th:if="${param.error}">
+			<h4>Virheellinen käyttäjätunnus tai salasana. Ole hyvä ja yritä uudelleen.</h4>
+		</div>
+	
+		<div class="alert alert-success" th:if="${param.logout}">
+			<h4>Sinut on onnistuneesti kirjattu ulos.</h4>
+		</div>
+				<div class="container">
+					<h3>Kirjaudu palveluun</h3>
+				<div class="col-md-4">
+			<form th:action="@{/login}" method="post">
+				<div><label>KÄYTTÄJÄTUNNUS </label><input type="text" name="username" class="form-control"></div>
+				<div style="clear: both; display: block; height: 10px;"></div>
+			
+				<div><label>SALASANA </label><input type="password" name="password" class="form-control"></div>
+				<div style="clear: both; display: block; height: 10px;"></div>
+		
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<div><input type="submit" value="Kirjaudu sisään" class="btn btn-success"></div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

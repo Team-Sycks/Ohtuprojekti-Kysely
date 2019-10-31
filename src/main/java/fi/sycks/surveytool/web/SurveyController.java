@@ -18,7 +18,7 @@ import fi.sycks.surveytool.interfaces.VastaajaRepository;
 import fi.sycks.surveytool.interfaces.VastausRepository;
 
 @Controller
-@ResponseBody
+// @ResponseBody
 public class SurveyController {
 	
 	@Autowired
@@ -33,13 +33,13 @@ public class SurveyController {
 	@Autowired
 	private VastausRepository vastausRepository;
 	
-	@RequestMapping(value="/login")
+	@RequestMapping("/login")
 	public String login() {
 		return "login";
 	}
 	@RequestMapping("*")
-	public String hello() {
-		return "Hello";
+	public String index() {
+		return "index";
 	}
 	
 	@RequestMapping("/api/kysely") 
