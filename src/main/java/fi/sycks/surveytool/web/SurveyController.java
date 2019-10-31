@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,32 +44,41 @@ public class SurveyController {
 	public String login() {
 		return "login";
 	}
+	
 	@RequestMapping("*")
-	public String index() {
+	public String index(Model model) {
+		model.addAttribute("surveys",(List<Kysely>)kyselyRepository.findAll());
 		return "index";
 	}
 	
-	@GetMapping("/api/kysely") 
+	@RequestMapping("/api/kysely") 
 	public @ResponseBody List<Kysely> getAllKyselyREST(){
 		return (List<Kysely>) kyselyRepository.findAll();
 	}
 
-	@GetMapping("/api/kysymys")
+	@RequestMapping("/api/kysymys")
 	public @ResponseBody List<Kysymys> getAllKysymyksetREST(){
 		return (List<Kysymys>) kysymysRepository.findAll();
 	}
 	
-	@GetMapping("/api/vastaaja") 
+	@RequestMapping("/api/kysymys/kyselyid/{kyselyid}")
+	public @ResponseBody List<Kysymys> getAllKysymyksetByKyselyIdREST(@PathVariable("kyselyid") long kyselyid){
+		Optional<Kysely> kysely = kyselyRepository.findById(kyselyid);
+		if(kysely.get() == null) return new ArrayList<>();
+		return (List<Kysymys>) kysymysRepository.findByKysely(kysely.get());
+	}
+	
+	@RequestMapping("/api/vastaaja") 
 	public @ResponseBody List<Vastaaja> getAllVastaajaREST(){
 		return (List<Vastaaja>) vastaajaRepository.findAll();
 	}
 
-	@GetMapping("/api/vastaus")
+	@RequestMapping("/api/vastaus")
 	public @ResponseBody List<Vastaus> getAllVastausREST(){
 		return (List<Vastaus>) vastausRepository.findAll();
 	}
 	
-	@GetMapping("/api/vastaus/kyselyid/{kyselyid}")
+	@RequestMapping("/vastaukset/kyselyid/{kyselyid}")
 	public @ResponseBody List<Vastaus> getAllVastausByKyselyREST(@PathVariable("kyselyid") long kyselyid) {
 		List<Vastaus> vastaukset =  (List<Vastaus>) vastausRepository.findAll();
 		Optional<Kysely> kysely = kyselyRepository.findById(kyselyid);
@@ -85,6 +95,7 @@ public class SurveyController {
 		
 		return kyselyVastaukset;
 	}
+	
 	@GetMapping("/vastaukset")
 	public @ResponseBody List<Vastaus> all() {
 		return (List<Vastaus>) vastausRepository.findAll();
