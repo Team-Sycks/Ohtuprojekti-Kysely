@@ -10,8 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import fi.sycks.surveytool.web.SurveyController;
 
-
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SurveytoolApplicationTests {
