@@ -48,27 +48,27 @@ public class SurveyController {
 		return "index";
 	}
 	
-	@RequestMapping("/api/kysely") 
+	@GetMapping("/api/kysely") 
 	public @ResponseBody List<Kysely> getAllKyselyREST(){
 		return (List<Kysely>) kyselyRepository.findAll();
 	}
 
-	@RequestMapping("/api/kysymys")
+	@GetMapping("/api/kysymys")
 	public @ResponseBody List<Kysymys> getAllKysymyksetREST(){
 		return (List<Kysymys>) kysymysRepository.findAll();
 	}
 	
-	@RequestMapping("/api/vastaaja") 
+	@GetMapping("/api/vastaaja") 
 	public @ResponseBody List<Vastaaja> getAllVastaajaREST(){
 		return (List<Vastaaja>) vastaajaRepository.findAll();
 	}
 
-	@RequestMapping("/api/vastaus")
+	@GetMapping("/api/vastaus")
 	public @ResponseBody List<Vastaus> getAllVastausREST(){
 		return (List<Vastaus>) vastausRepository.findAll();
 	}
 	
-	@RequestMapping("/api/vastaus/kyselyid/{kyselyid}")
+	@GetMapping("/api/vastaus/kyselyid/{kyselyid}")
 	public @ResponseBody List<Vastaus> getAllVastausByKyselyREST(@PathVariable("kyselyid") long kyselyid) {
 		List<Vastaus> vastaukset =  (List<Vastaus>) vastausRepository.findAll();
 		Optional<Kysely> kysely = kyselyRepository.findById(kyselyid);
