@@ -1,3 +1,3 @@
 ## Ohtuprojekti-Kysely
 
-https://ohtukysely.herokuapp.com/
+https://ohtukysely.herokuapp.com/login
