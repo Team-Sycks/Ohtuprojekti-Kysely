@@ -33,6 +33,7 @@
 					<td th:text="${survey.kyselyid}"></td>
 					<td th:text="${survey.kyselynimi}"></td>
 					<td th:text="${survey.deployattu}"></td>
+					<td><a th:href="@{/api/kysymys/kyselyid/__${survey.kyselyid}__}">Linkki tietoihin</a></td>
 				</tr>
 	</table>
 </body>
