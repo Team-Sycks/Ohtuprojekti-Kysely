@@ -57,6 +57,13 @@ public class SurveyController {
 		return (List<Kysymys>) kysymysRepository.findAll();
 	}
 	
+	@RequestMapping("/api/kysymys/kyselyid/{kyselyid}")
+	public @ResponseBody List<Kysymys> getAllKysymyksetKyselyREST(@PathVariable("kyselyid") long kyselyid){
+		Optional<Kysely> kysely = kyselyRepository.findById(kyselyid);
+		if(kysely.get() == null) return new ArrayList<>();
+		return (List<Kysymys>) kysymysRepository.findByKysely(kysely.get());
+	}
+	
 	@RequestMapping("/api/vastaaja") 
 	public @ResponseBody List<Vastaaja> getAllVastaajaREST(){
 		return (List<Vastaaja>) vastaajaRepository.findAll();
@@ -65,23 +72,5 @@ public class SurveyController {
 	@RequestMapping("/api/vastaus")
 	public @ResponseBody List<Vastaus> getAllVastausREST(){
 		return (List<Vastaus>) vastausRepository.findAll();
-	}
-	
-	@RequestMapping("/api/vastaus/kyselyid/{kyselyid}")
-	public @ResponseBody List<Vastaus> getAllVastausByKyselyREST(@PathVariable("kyselyid") long kyselyid) {
-		List<Vastaus> vastaukset =  (List<Vastaus>) vastausRepository.findAll();
-		Optional<Kysely> kysely = kyselyRepository.findById(kyselyid);
-		
-		List<Vastaus> kyselyVastaukset = new ArrayList<>();
-		if(!kysely.isEmpty()) {
-			for(Vastaus vastaus : vastaukset) {
-				Kysymys kysymys = vastaus.getKysymys();
-				if(kysymys.getKysely().getKyselyid() == kysely.get().getKyselyid()) {
-					kyselyVastaukset.add(vastaus);
-				}
-			}		
-		}
-		
-		return kyselyVastaukset;
 	}
 }
