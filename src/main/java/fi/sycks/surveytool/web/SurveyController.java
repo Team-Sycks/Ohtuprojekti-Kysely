@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.sycks.surveytool.domain.Kysely;
 import fi.sycks.surveytool.domain.Kysymys;
+import fi.sycks.surveytool.domain.Vastaaja;
+import fi.sycks.surveytool.domain.Vastaus;
 import fi.sycks.surveytool.interfaces.KyselyRepository;
 import fi.sycks.surveytool.interfaces.KysymysRepository;
 import fi.sycks.surveytool.interfaces.UserRepository;
+import fi.sycks.surveytool.interfaces.VastaajaRepository;
+import fi.sycks.surveytool.interfaces.VastausRepository;
 
 @Controller
 @ResponseBody
@@ -23,6 +27,11 @@ public class SurveyController {
 	@Autowired
 	private KysymysRepository kysymysRepository;
 	
+	@Autowired
+	private VastaajaRepository vastaajaRepository;
+	
+	@Autowired
+	private VastausRepository vastausRepository;
 	
 	@RequestMapping(value="/login")
 	public String login() {
@@ -41,5 +50,15 @@ public class SurveyController {
 	@RequestMapping("/api/kysymys")
 	public @ResponseBody List<Kysymys> getAllKysymyksetREST(){
 		return (List<Kysymys>) kysymysRepository.findAll();
+	}
+	
+	@RequestMapping("/api/vastaaja") 
+	public @ResponseBody List<Vastaaja> getAllVastaajaREST(){
+		return (List<Vastaaja>) vastaajaRepository.findAll();
+	}
+
+	@RequestMapping("/api/vastaus")
+	public @ResponseBody List<Vastaus> getAllVastausREST(){
+		return (List<Vastaus>) vastausRepository.findAll();
 	}
 }
