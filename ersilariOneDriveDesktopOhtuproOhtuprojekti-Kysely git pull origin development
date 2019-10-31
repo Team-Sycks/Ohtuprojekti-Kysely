@@ -1,0 +1,172 @@
+[33mcommit a30939f6f9a47a5e2c38f33e2b826f837ef278f0[m[33m ([m[1;36mHEAD -> [m[1;32mdevelopment[m[33m, [m[1;31morigin/development[m[33m)[m
+Author: Ilari Tuominen <ilari.tuominen@gmail.com>
+Date:   Tue Oct 29 15:33:15 2019 +0200
+
+    added login to controller
+
+[33mcommit abf53d68f5e3d7b5004c0e19f64f5d4950602852[m
+Author: tuoamas <tuomas.koskipahta@gmail.com>
+Date:   Tue Oct 29 15:29:42 2019 +0200
+
+    Added login view
+
+[33mcommit 3c0c4666fca1d65b022d2f88b29f7203be09a216[m
+Author: Santtu Hyvärinen <santtu.hyvarinen@kuori.tech>
+Date:   Tue Oct 29 15:25:48 2019 +0200
+
+    Added REST for kysely & kysymys
+
+[33mcommit 8581a62175e6871eb5f8c8e8b36f6bf4731b26f3[m
+Author: Sami Jaanu <jaanusa.sj@gmail.com>
+Date:   Tue Oct 29 15:19:11 2019 +0200
+
+    JsonIgnore poistettu
+
+[33mcommit a4aeae2b7616a6a1da1e0fbaa3c52b23087d80d3[m
+Author: Sami Jaanu <jaanusa.sj@gmail.com>
+Date:   Tue Oct 29 15:18:24 2019 +0200
+
+    mappedby korjauksia
+
+[33mcommit 737ac475edfeb52b2b844b60a01e744ffbb59488[m
+Author: tuoamas <tuomas.koskipahta@gmail.com>
+Date:   Tue Oct 29 15:12:19 2019 +0200
+
+    Added h2 dependency... again
+
+[33mcommit 7927731d8322b9b13ff959eb7f7a929aadaf69b7[m
+Merge: f44a83d 9e2f12d
+Author: Sami Jaanu <jaanusa.sj@gmail.com>
+Date:   Tue Oct 29 15:04:23 2019 +0200
+
+    objektit tehty
+
+[33mcommit 9e2f12db78e452c10ca22a230ae029a23b3fd4e1[m
+Author: Ilari Tuominen <ilari.tuominen@gmail.com>
+Date:   Tue Oct 29 15:02:05 2019 +0200
+
+    Added admin user to application
+
+[33mcommit f44a83d696bbc4ff07298a650316bb723d833b2b[m
+Merge: feb0fea 56ca16d
+Author: Sami Jaanu <jaanusa.sj@gmail.com>
+Date:   Tue Oct 29 14:57:29 2019 +0200
+
+    Merge branch 'development' of https://github.com/Team-Sycks/Ohtuprojekti-Kysely into development
+
+[33mcommit feb0feade48db133db713a1476f7068453219011[m
+Author: Sami Jaanu <jaanusa.sj@gmail.com>
+Date:   Tue Oct 29 14:56:24 2019 +0200
+
+    objectit tehty
+
+[33mcommit 56ca16d555e4e749015b8cb04eb0e9e835784be3[m
+Author: tuoamas <tuomas.koskipahta@gmail.com>
+Date:   Tue Oct 29 14:53:46 2019 +0200
+
+    Added userServiceImpl and fixes to pom
+
+[33mcommit 8dced06fd077fce42ad3cdc48b7e538a5c89292e[m
+Author: Ilari Tuominen <ilari.tuominen@gmail.com>
+Date:   Tue Oct 29 14:50:48 2019 +0200
+
+    added web security to pom
+
+[33mcommit 12c4a9fe8e0784c02cc36847ea6dae27328535f8[m
+Author: Santtu Hyvärinen <santtu.hyvarinen@kuori.tech>
+Date:   Tue Oct 29 14:46:37 2019 +0200
+
+    Command line runner (added some test data)
+
+[33mcommit 0d387cb32672e1f4cb7c46d5454d11a05dd683a3[m
+Merge: 6bbff6d 0c291fd
+Author: Ilari Tuominen <ilari.tuominen@gmail.com>
+Date:   Tue Oct 29 14:41:31 2019 +0200
+
+    Merge branch 'development' of https://github.com/Team-Sycks/Ohtuprojekti-Kysely into development
+
+[33mcommit 6bbff6d114ab235b41ce5c2f99fdbfe82054aea2[m
+Author: Ilari Tuominen <ilari.tuominen@gmail.com>
+Date:   Tue Oct 29 14:41:08 2019 +0200
+
+    Added UserRepo and WebSecurity
+
+[33mcommit 0c291fd36005050ebfece591c95fca6f4f7a4b85[m
+Author: tuoamas <tuomas.koskipahta@gmail.com>
+Date:   Tue Oct 29 14:35:29 2019 +0200
+
+    Added h2 dependency
+
+[33mcommit ead2a07ab42b978e30d709c6d1771d82be674392[m
+Author: Santtu Hyvärinen <santtu.hyvarinen@kuori.tech>
+Date:   Tue Oct 29 14:34:26 2019 +0200
+
+    Kysymys & kysely repositories
+
+[33mcommit 6ad2e92a9df2174ab2dc6eec4194cef3fa26b6e9[m
+Author: Sami Jaanu <jaanusa.sj@gmail.com>
+Date:   Tue Oct 29 14:33:53 2019 +0200
+
+    Kysymys objecti tehty
+
+[33mcommit 7a843d9b78520d9901a230d2327bf3ddc7dca267[m
+Merge: 50d3f9c c6099fe
+Author: Ilari Tuominen <ilari.tuominen@gmail.com>
+Date:   Tue Oct 29 14:31:53 2019 +0200
+
+    Merge branch 'development' of https://github.com/Team-Sycks/Ohtuprojekti-Kysely into development
+
+[33mcommit 50d3f9cc2111897780f7574d7b7f5b715fec5359[m
+Author: Ilari Tuominen <ilari.tuominen@gmail.com>
+Date:   Tue Oct 29 14:31:17 2019 +0200
+
+    created User class
+
+[33mcommit c6099fe8908e75bf9494b4c231f08dc0574a50f6[m
+Author: tuoamas <tuomas.koskipahta@gmail.com>
+Date:   Tue Oct 29 14:30:08 2019 +0200
+
+    Added h2 properties
+
+[33mcommit b1a819b1e65cc91599a139f4822b2d7c8ea3cdc3[m
+Merge: 107e355 f135523
+Author: Sami Jaanu <jaanusa.sj@gmail.com>
+Date:   Tue Oct 29 14:20:21 2019 +0200
+
+    Merge branch 'development' of https://github.com/Team-Sycks/Ohtuprojekti-Kysely into development
+
+[33mcommit 107e3559865ecbda5d6702b888650f176c28c3af[m
+Author: Sami Jaanu <jaanusa.sj@gmail.com>
+Date:   Tue Oct 29 14:17:53 2019 +0200
+
+    muutama objekti tehty
+
+[33mcommit f135523bdfae1f40e4fa61f89d5e498f31974b17[m
+Author: tuoamas <tuomas.koskipahta@gmail.com>
+Date:   Tue Oct 29 14:15:41 2019 +0200
+
+    Changed package to war
+
+[33mcommit 41bdbe8ec51e378bc27cf1c3280c155b506fa96c[m
+Author: Santtu Hyvärinen <santtu.hyvarinen@kuori.tech>
+Date:   Tue Oct 29 13:53:31 2019 +0200
+
+    Removed security dependency from pom.xml
+
+[33mcommit 6c9b91c7eff0e776bc211da35057d0db1653a594[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Sami Jaanu <jaanusa.sj@gmail.com>
+Date:   Tue Oct 29 13:44:29 2019 +0200
+
+    smoke testi lisätty
+
+[33mcommit a16f2f8e542074d9caa5503bfff00698d5ec5244[m
+Author: tuoamas <tuomas.koskipahta@gmail.com>
+Date:   Tue Oct 29 13:40:26 2019 +0200
+
+    Test
+
+[33mcommit 190b79c1681c8c342d0d6e4bb61d2ec17b068998[m
+Author: Noora-Irene <nooraetel@gmail.com>
+Date:   Thu Oct 24 16:43:32 2019 +0300
+
+    First commit
