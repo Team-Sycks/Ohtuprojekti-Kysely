@@ -6,7 +6,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -81,5 +84,13 @@ public class SurveyController {
 		}
 		
 		return kyselyVastaukset;
+	}
+	@GetMapping("/vastaukset")
+	public @ResponseBody List<Vastaus> all() {
+		return (List<Vastaus>) vastausRepository.findAll();
+	}
+	@PostMapping("/vastaukset")
+	public @ResponseBody Vastaus newVastaus(@RequestBody Vastaus newVastaus) {
+		return vastausRepository.save(newVastaus);
 	}
 }

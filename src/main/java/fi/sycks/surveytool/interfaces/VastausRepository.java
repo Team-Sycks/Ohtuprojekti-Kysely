@@ -10,4 +10,5 @@ import fi.sycks.surveytool.domain.Vastaus;
 public interface VastausRepository extends CrudRepository<Vastaus, Long>{
 	
 	List<Vastaus> findByVastaaja(Vastaaja vastaaja);
+	
 }
