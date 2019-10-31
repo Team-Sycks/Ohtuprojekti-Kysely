@@ -76,15 +76,15 @@ public void findSpecificVastaaja() {
 	assertThat(vastaaja1.getVastaajaid()).isNotNull();
 	assertThat(vastaaja2.getVastaajaid()).isNotNull();
 	
-	Kysely kysely1 = new Kysely("Teksikysely3", "Ylhäällä");
+	Kysely kysely1 = new Kysely("Teksikysely3", Kysely.STATUS_DEPLOYED);
 	kyselyRepository.save(kysely1);
-	assertThat(kysely1.getDeployattu()).isEqualTo("Ylhäällä");
+	assertThat(kysely1.getDeployattu()).isEqualTo(Kysely.STATUS_DEPLOYED);
 	
-	Kysymys kysymys1 = new Kysymys("Onko JUnit-testaus hyödyllistä?", "short_text", kysely1);
+	Kysymys kysymys1 = new Kysymys("Onko JUnit-testaus hyödyllistä?", Kysymys.TYPE_SHORT_TEXT, kysely1);
 	kysymysRepository.save(kysymys1);
 	
 	
-	Kysymys kysymys2 = new Kysymys("Onko kona?", "short_text", kysely1);
+	Kysymys kysymys2 = new Kysymys("Onko kona?", Kysymys.TYPE_SHORT_TEXT, kysely1);
 	kysymysRepository.save(kysymys2);
 	
 	
