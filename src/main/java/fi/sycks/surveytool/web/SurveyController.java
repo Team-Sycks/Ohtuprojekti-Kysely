@@ -71,7 +71,7 @@ public class SurveyController {
 		Optional<Kysely> kysely = kyselyRepository.findById(kyselyid);
 		
 		List<Vastaus> kyselyVastaukset = new ArrayList<>();
-		if(!kysely.isEmpty()) {
+		if(kysely.get() != null) {
 			for(Vastaus vastaus : vastaukset) {
 				Kysymys kysymys = vastaus.getKysymys();
 				if(kysymys.getKysely().getKyselyid() == kysely.get().getKyselyid()) {
