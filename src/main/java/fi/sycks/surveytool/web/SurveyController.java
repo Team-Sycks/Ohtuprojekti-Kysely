@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,11 +41,12 @@ public class SurveyController {
 	public String login() {
 		return "login";
 	}
-	@RequestMapping("*")
-	public String index() {
-		return "index";
+		@RequestMapping("/index")
+		public String surveyList(Model model) {
+			model.addAttribute("surveys", kyselyRepository.findAll());
+			
+			return "index";
 	}
-	
 	@RequestMapping("/api/kysely") 
 	public @ResponseBody List<Kysely> getAllKyselyREST(){
 		return (List<Kysely>) kyselyRepository.findAll();

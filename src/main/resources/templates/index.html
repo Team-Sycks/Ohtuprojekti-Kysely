@@ -1,15 +1,39 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<title>Index</title>
+	<title>All surveys</title>
 	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
+<style>
+	table {
+  	font-family: arial, sans-serif;
+ 	border-collapse: collapse;
+  	width: 100%;
+	}
+
+	td, th {
+	border: 1px solid #dddddd;
+  	text-align: left;
+  	padding: 8px;
+	}
+
+	tr:nth-child(even) {
+  	background-color: #dddddd;
+	}
+</style>
 <body>
-				<div class="container">
-					<h3>Tervetuloa</h3>
-				<div class="col-md-4">
-		</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
 	</div>
+	<table>
+				<tr th:each = "survey : ${surveys}">
+					<td th:text="${survey.kyselyid}"></td>
+					<td th:text="${survey.kyselynimi}"></td>
+					<td th:text="${survey.deployattu}"></td>
+				</tr>
+	</table>
 </body>
 </html>
