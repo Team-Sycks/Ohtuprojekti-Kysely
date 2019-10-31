@@ -65,7 +65,7 @@ public class SurveyController {
 		return (List<Vastaus>) vastausRepository.findAll();
 	}
 	
-	@RequestMapping("/api/vastaus/{kyselyid}")
+	@RequestMapping("/api/vastaus/kyselyid/{kyselyid}")
 	public @ResponseBody List<Vastaus> getAllVastausByKyselyREST(@PathVariable("kyselyid") long kyselyid) {
 		List<Vastaus> vastaukset =  (List<Vastaus>) vastausRepository.findAll();
 		Optional<Kysely> kysely = kyselyRepository.findById(kyselyid);

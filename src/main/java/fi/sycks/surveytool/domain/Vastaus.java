@@ -24,17 +24,17 @@ public class Vastaus {
 	
 	public Vastaus() {}
 
-	public Vastaus(Long vastausid, String vastaus_teksti, Vastaaja vastaaja, Kysymys kysymys) {
+	public Vastaus(Long vastausid, String vastausteksti, Vastaaja vastaaja, Kysymys kysymys) {
 		super();
 		this.vastausid = vastausid;
-		this.vastausteksti = vastaus_teksti;
+		this.vastausteksti = vastausteksti;
 		this.vastaaja = vastaaja;
 		this.kysymys = kysymys;
 	}
 
-	public Vastaus(String vastaus_teksti, Vastaaja vastaaja, Kysymys kysymys) {
+	public Vastaus(String vastausteksti, Vastaaja vastaaja, Kysymys kysymys) {
 		super();
-		this.vastausteksti = vastaus_teksti;
+		this.vastausteksti = vastausteksti;
 		this.vastaaja = vastaaja;
 		this.kysymys = kysymys;
 	}
@@ -43,8 +43,8 @@ public class Vastaus {
 		this.vastausid = vastausid;
 	}
 
-	public void setVastaus_teksti(String vastaus_teksti) {
-		this.vastausteksti = vastaus_teksti;
+	public void setVastausteksti(String vastausteksti) {
+		this.vastausteksti = vastausteksti;
 	}
 
 	public void setVastaaja(Vastaaja vastaaja) {
@@ -59,7 +59,7 @@ public class Vastaus {
 		return vastausid;
 	}
 
-	public String getVastaus_teksti() {
+	public String getVastausteksti() {
 		return vastausteksti;
 	}
 
