@@ -13,7 +13,7 @@ public class Kysymys {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long kysymysid;
-	private String teksti;
+	private String kysymysteksti;
 	private String tyyppi;
 	
 	@ManyToOne
@@ -32,14 +32,14 @@ public class Kysymys {
 	public Kysymys(Long kysymysid, String teksti, String tyyppi, Kysely kysely) {
 		super();
 		this.kysymysid = kysymysid;
-		this.teksti = teksti;
+		this.kysymysteksti = teksti;
 		this.tyyppi = tyyppi;
 		this.kysely = kysely;
 	}
 
 	public Kysymys(String teksti, String tyyppi, Kysely kysely) {
 		super();
-		this.teksti = teksti;
+		this.kysymysteksti = teksti;
 		this.tyyppi = tyyppi;
 		this.kysely = kysely;
 	}
@@ -49,7 +49,7 @@ public class Kysymys {
 	}
 
 	public String getTeksti() {
-		return teksti;
+		return kysymysteksti;
 	}
 
 	public String getTyyppi() {
@@ -65,7 +65,7 @@ public class Kysymys {
 	}
 
 	public void setTeksti(String teksti) {
-		this.teksti = teksti;
+		this.kysymysteksti = teksti;
 	}
 
 	public void setTyyppi(String tyyppi) {
@@ -80,9 +80,9 @@ public class Kysymys {
 	public String toString() {
 		
 		if(this.kysely !=null)
-		return "Kysymys [kysymysid=" + kysymysid + ", teksti=" + teksti + ", tyyppi=" + tyyppi + this.getKysely() + "]";
+		return "Kysymys [kysymysid=" + kysymysid + ", kysymysteksti=" + kysymysteksti + ", tyyppi=" + tyyppi + this.getKysely() + "]";
 		else
-			return "Kysymys [kysymysid=" + kysymysid + ", teksti=" + teksti + ", tyyppi=" + tyyppi + "]";
+			return "Kysymys [kysymysid=" + kysymysid + ", kysymysteksti=" + kysymysteksti + ", tyyppi=" + tyyppi + "]";
 	}
 
 }

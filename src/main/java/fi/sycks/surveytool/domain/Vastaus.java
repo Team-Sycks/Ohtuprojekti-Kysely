@@ -12,7 +12,7 @@ public class Vastaus {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long vastausid;
-	private String vastaus_teksti;
+	private String vastausteksti;
 	
 	@ManyToOne
 	@JoinColumn(name="vastaajaid")
@@ -27,14 +27,14 @@ public class Vastaus {
 	public Vastaus(Long vastausid, String vastaus_teksti, Vastaaja vastaaja, Kysymys kysymys) {
 		super();
 		this.vastausid = vastausid;
-		this.vastaus_teksti = vastaus_teksti;
+		this.vastausteksti = vastaus_teksti;
 		this.vastaaja = vastaaja;
 		this.kysymys = kysymys;
 	}
 
 	public Vastaus(String vastaus_teksti, Vastaaja vastaaja, Kysymys kysymys) {
 		super();
-		this.vastaus_teksti = vastaus_teksti;
+		this.vastausteksti = vastaus_teksti;
 		this.vastaaja = vastaaja;
 		this.kysymys = kysymys;
 	}
@@ -44,7 +44,7 @@ public class Vastaus {
 	}
 
 	public void setVastaus_teksti(String vastaus_teksti) {
-		this.vastaus_teksti = vastaus_teksti;
+		this.vastausteksti = vastaus_teksti;
 	}
 
 	public void setVastaaja(Vastaaja vastaaja) {
@@ -60,7 +60,7 @@ public class Vastaus {
 	}
 
 	public String getVastaus_teksti() {
-		return vastaus_teksti;
+		return vastausteksti;
 	}
 
 	public Vastaaja getVastaaja() {
@@ -75,9 +75,9 @@ public class Vastaus {
 	@Override
 	public String toString() {
 		if(this.vastaaja !=null && this.kysymys !=null)
-			return "Vastaus [vastausid=" + vastausid + ", vastaus_teksti=" + vastaus_teksti + this.getVastaaja() + this.getKysymys() +"]";
+			return "Vastaus [vastausid=" + vastausid + ", vastausteksti=" + vastausteksti + this.getVastaaja() + this.getKysymys() +"]";
 		else
-			return "Vastaus [vastausid=" + vastausid + ", vastaus_teksti=" + vastaus_teksti + "]";
+			return "Vastaus [vastausid=" + vastausid + ", vastausteksti=" + vastausteksti + "]";
 	}
 	
 	
