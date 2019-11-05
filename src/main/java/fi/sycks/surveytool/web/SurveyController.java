@@ -104,4 +104,13 @@ public class SurveyController {
 	public @ResponseBody Vastaus newVastaus(@RequestBody Vastaus newVastaus) {
 		return vastausRepository.save(newVastaus);
 	}
+
+	@GetMapping("/vastaajat")
+	public @ResponseBody List<Vastaaja> all1() {
+		return (List<Vastaaja>) vastaajaRepository.findAll();
+	}
+	@PostMapping("/vastaajat")
+	public @ResponseBody Vastaaja newVastaaja(@RequestBody Vastaaja newVastaaja) {
+		return vastaajaRepository.save(newVastaaja);
+	}
 }
