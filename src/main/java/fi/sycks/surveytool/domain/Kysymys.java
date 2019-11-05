@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Kysymys {
 	@Id
@@ -18,6 +20,7 @@ public class Kysymys {
 	
 	@ManyToOne
 	@JoinColumn(name="kyselyid")
+	@JsonIgnore
 	private Kysely kysely;
 	
 	@Transient
