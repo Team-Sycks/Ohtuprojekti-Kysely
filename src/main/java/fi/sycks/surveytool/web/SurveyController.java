@@ -109,6 +109,7 @@ public class SurveyController {
 	public @ResponseBody void vastausKyselyyn(@RequestBody Vastaus[] vastaukset) {
 		
 		Vastaaja vastaaja = new Vastaaja(System.currentTimeMillis() + "");
+		vastaajaRepository.save(vastaaja);
 		for(Vastaus vastaus : vastaukset) {
 			vastaus.setVastaaja(vastaaja);
 			vastausRepository.save(vastaus);
