@@ -3,6 +3,8 @@ package fi.sycks.surveytool.web;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -98,6 +100,20 @@ public class SurveyController {
 		}
 		
 		return kyselyVastaukset;
+	}
+	
+	@GetMapping(value ="/vastaus")
+	public String getVastausOneQuestion(Model model) {
+		List<Kysymys> kysymykset = (List<Kysymys>) kysymysRepository.findAll();
+		
+		Collections.sort(kysymykset, new Comparator<Kysymys>() {
+			public int compare (Kysymys o1, Kysymys o2) {
+				return o1.getKysymysteksti().compareTo(o2.getKysymysteksti());
+			}
+		});
+		
+		model.addAttribute("kysymykset", kysymykset);
+		return "vastaus";
 	}
 	
 	@GetMapping("/vastaukset")

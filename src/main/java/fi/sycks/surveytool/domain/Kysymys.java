@@ -1,14 +1,16 @@
 package fi.sycks.surveytool.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Kysymys {
@@ -18,9 +20,12 @@ public class Kysymys {
 	private String kysymysteksti;
 	private String tyyppi;
 	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy ="kysymys")
+	private List<Vastaus> vastaukset;
+	
+
 	@ManyToOne
 	@JoinColumn(name="kyselyid")
-	@JsonIgnore
 	private Kysely kysely;
 	
 	@Transient
@@ -51,9 +56,6 @@ public class Kysymys {
 		return kysymysid;
 	}
 
-	public String getTeksti() {
-		return kysymysteksti;
-	}
 
 	public String getTyyppi() {
 		return tyyppi;
@@ -67,16 +69,27 @@ public class Kysymys {
 		this.kysymysid = kysymysid;
 	}
 
-	public void setTeksti(String teksti) {
-		this.kysymysteksti = teksti;
-	}
-
 	public void setTyyppi(String tyyppi) {
 		this.tyyppi = tyyppi;
 	}
 
 	public void setKysely(Kysely kysely) {
 		this.kysely = kysely;
+	}
+	public String getKysymysteksti() {
+		return kysymysteksti;
+	}
+
+	public void setKysymysteksti(String kysymysteksti) {
+		this.kysymysteksti = kysymysteksti;
+	}
+
+	public List<Vastaus> getVastaukset() {
+		return vastaukset;
+	}
+
+	public void setVastaukset(List<Vastaus> vastaukset) {
+		this.vastaukset = vastaukset;
 	}
 
 	@Override
