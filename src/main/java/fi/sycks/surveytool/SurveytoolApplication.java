@@ -39,11 +39,11 @@ public class SurveytoolApplication {
 			
 			Vastaaja vastaaja = vastaajaRepository.save(new Vastaaja("31.10.2019"));
 			vastausRepository.save(new Vastaus("21", vastaaja, ikäKysymys));
-			vastausRepository.save(new Vastaus("Pizza", vastaaja, ruokaKysymys));
+			//vastausRepository.save(new Vastaus("Pizza", vastaaja, ruokaKysymys));
 			
 			Vastaaja vastaaja2 = vastaajaRepository.save(new Vastaaja("21.10.2019"));
-			vastausRepository.save(new Vastaus("65", vastaaja2, ikäKysymys));
-			vastausRepository.save(new Vastaus("Makaroonilaatikko", vastaaja2, ruokaKysymys));
+			//vastausRepository.save(new Vastaus("65", vastaaja2, ikäKysymys));
+			//vastausRepository.save(new Vastaus("Makaroonilaatikko", vastaaja2, ruokaKysymys));
 			
 			//Kysely 2
 			Kysely kysely2 = kyselyRepository.save(new Kysely("Koulukysely", Kysely.STATUS_DEPLOYED));
@@ -51,8 +51,8 @@ public class SurveytoolApplication {
 			Kysymys keskiarvoKysymys = kysymysRepository.save(new Kysymys("Keskiarvosi?", Kysymys.TYPE_SHORT_TEXT, kysely2));
 			
 			Vastaaja vastaaja3 = vastaajaRepository.save(new Vastaaja("31.10.2019"));
-			vastausRepository.save(new Vastaus("2 vuotta", vastaaja3, vuosiKysymys));
-			vastausRepository.save(new Vastaus("3.6", vastaaja3, keskiarvoKysymys));
+			//vastausRepository.save(new Vastaus("2 vuotta", vastaaja3, vuosiKysymys));
+			//vastausRepository.save(new Vastaus("3.6", vastaaja3, keskiarvoKysymys));
 
 			//password admin
 			User user1 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
