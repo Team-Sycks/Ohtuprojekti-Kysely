@@ -1,5 +1,7 @@
 package fi.sycks.surveytool.web;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -107,8 +109,9 @@ public class SurveyController {
 	
 	@PostMapping("/tallennaVastaukset")
 	public @ResponseBody void vastausKyselyyn(@RequestBody Vastaus[] vastaukset) {
-		
-		Vastaaja vastaaja = new Vastaaja(System.currentTimeMillis() + "");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		LocalDateTime now = LocalDateTime.now();
+		Vastaaja vastaaja = new Vastaaja(dtf.format(now) + "");
 		vastaajaRepository.save(vastaaja);
 		for(Vastaus vastaus : vastaukset) {
 			vastaus.setVastaaja(vastaaja);
