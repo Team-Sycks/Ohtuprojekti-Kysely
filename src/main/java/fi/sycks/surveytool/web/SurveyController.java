@@ -119,6 +119,7 @@ public class SurveyController {
 	public @ResponseBody List<Vastaaja> all1() {
 		return (List<Vastaaja>) vastaajaRepository.findAll();
 	}
+	
 	@PostMapping("/vastaajat")
 	public @ResponseBody Vastaaja newVastaaja(@RequestBody Vastaaja newVastaaja) {
 		return vastaajaRepository.save(newVastaaja);
