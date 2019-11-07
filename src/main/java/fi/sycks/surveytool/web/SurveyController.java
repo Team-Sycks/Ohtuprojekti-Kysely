@@ -104,19 +104,10 @@ public class SurveyController {
 	public @ResponseBody List<Vastaus> all() {
 		return (List<Vastaus>) vastausRepository.findAll();
 	}
-	@PostMapping("/vastaukset")
-	public @ResponseBody Vastaus newVastaus(@RequestBody Vastaus newVastaus) {
-		return vastausRepository.save(newVastaus);
-	}
-	// POST TEST
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String getNewCarForm(Model model) {
-		model.addAttribute("vastaus", new Vastaus()); 
-		
-		return "posttest";
-	}
 	
-	@PostMapping("/tallennaVastaukset")
+	
+	
+	@PostMapping("/vastaukset")
 	public @ResponseBody void vastausKyselyyn(@RequestBody Vastaus[] vastaukset) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		LocalDateTime now = LocalDateTime.now();
@@ -133,8 +124,5 @@ public class SurveyController {
 		return (List<Vastaaja>) vastaajaRepository.findAll();
 	}
 	
-	@PostMapping("/vastaajat")
-	public @ResponseBody Vastaaja newVastaaja(@RequestBody Vastaaja newVastaaja) {
-		return vastaajaRepository.save(newVastaaja);
-	}
+
 }
