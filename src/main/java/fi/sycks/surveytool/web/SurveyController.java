@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import fi.sycks.surveytool.domain.Kysely;
 import fi.sycks.surveytool.domain.Kysymys;
@@ -105,6 +107,13 @@ public class SurveyController {
 	@PostMapping("/vastaukset")
 	public @ResponseBody Vastaus newVastaus(@RequestBody Vastaus newVastaus) {
 		return vastausRepository.save(newVastaus);
+	}
+	// POST TEST
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String getNewCarForm(Model model) {
+		model.addAttribute("vastaus", new Vastaus()); 
+		
+		return "posttest";
 	}
 	
 	@PostMapping("/tallennaVastaukset")
