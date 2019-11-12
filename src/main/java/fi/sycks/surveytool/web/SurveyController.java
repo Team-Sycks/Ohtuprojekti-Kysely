@@ -113,9 +113,10 @@ public class SurveyController {
 		return kyselyVastaukset;
 	}
 	
-	@GetMapping(value ="/vastaus")
-	public String getVastausOneQuestion(Model model) {
-		List<Kysymys> kysymykset = (List<Kysymys>) kysymysRepository.findAll();
+	@GetMapping(value ="/vastaus/{kyselyid}")
+	public String getVastauksetToKysely(@PathVariable("kyselyid") long kyselyid, Model model) {
+		List<Kysymys> kysymykset = 
+				(List<Kysymys>) kysymysRepository.findByKysely(kyselyRepository.findById(kyselyid).get());
 		
 		Collections.sort(kysymykset, new Comparator<Kysymys>() {
 			public int compare (Kysymys o1, Kysymys o2) {
@@ -123,6 +124,19 @@ public class SurveyController {
 			}
 		});
 		
+		List<Vastaaja> vastaajat = new ArrayList<>();
+		for(Kysymys kysymys : kysymykset) {
+			List<Vastaus> vastaukset = kysymys.getVastaukset();
+			for(Vastaus vastaus : vastaukset) {
+				Vastaaja vastaaja = vastaus.getVastaaja();
+				if(!vastaajat.contains(vastaaja)) {
+					vastaajat.add(vastaaja);
+				}
+			}
+		}
+		
+		System.out.println(vastaajat.size());
+		model.addAttribute("vastaajat", vastaajat.size());
 		model.addAttribute("kysymykset", kysymykset);
 		return "vastaus";
 	}
