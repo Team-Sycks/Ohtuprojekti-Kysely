@@ -57,6 +57,13 @@ public class SurveyController {
 		return "index";
 	}
 	
+	@RequestMapping("/muokkaakysely/{kyselyid}")
+	public String muokkaaKysely(@PathVariable("kyselyid") long kyselyid, Model model) {
+		model.addAttribute("kysely", kyselyRepository.findById(kyselyid).get());
+		model.addAttribute("kysymykset",(List<Kysymys>)kysymysRepository.findAll());
+		return "muokkaakysely";	
+	}
+	
 	@RequestMapping("/api/kysely") 
 	public @ResponseBody List<Kysely> getAllKyselyREST(){
 		return (List<Kysely>) kyselyRepository.findAll();
