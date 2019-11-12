@@ -4,10 +4,6 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
      <link type="text/css"rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" /> 
-<head>
-    <title></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-     <link type="text/css"rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" /> 
 </head>
 <style>
 	table {
@@ -27,21 +23,22 @@
 	}
 </style>
 <body>
+	<h1 th:text="${kysely.kyselynimi}"></h1>
+	<p>Kyselyyn vastaajien lukumäärä: <p th:text="${vastaaja_lkm}"></p></p>
 	<table>
-		<tr>
-		<th>Kysymys</th>
+        <tr>
+			<th>Kysymys</th>
+			<th:block th:each="vastaus : ${kysymys.vastaukset}">
+				<td th:text="${vastaus.vastausteksti}">vastaukset</td>
+			</th:block>
+        </tr>
 
-		
-		
 		<tr th:each="kysymys : ${kysymykset}">
-		<td th:text="${kysymys.kysymysteksti}"></td>
-		<th:block th:each="vastaus : ${kysymys.vastaukset}">
-		<td th:text="${vastaus.vastausteksti}">vastaukset</td>
-		</th:block>
-
-
-			
-			</tr>
+			<td th:text="${kysymys.kysymysteksti}"></td>
+			<th:block th:each="vastaus : ${kysymys.vastaukset}">
+				<td th:text="${vastaus.vastausteksti}">vastaukset</td>
+			</th:block>
+		</tr>
 		</table>
 		<div>
 		
