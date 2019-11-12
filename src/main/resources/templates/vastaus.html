@@ -28,6 +28,9 @@
 	<table>
         <tr>
 			<th>Kysymys</th>
+			<th:block th:each="vastaus : ${kysymys.vastaukset}">
+				<td th:text="${vastaus.vastausteksti}">vastaukset</td>
+			</th:block>
         </tr>
 
 		<tr th:each="kysymys : ${kysymykset}">
