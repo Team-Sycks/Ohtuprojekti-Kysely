@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Vastaus {
 	@Id
@@ -15,10 +17,12 @@ public class Vastaus {
 	private String vastausteksti;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="vastaajaid")
 	private Vastaaja vastaaja;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="kysymysid")
 	private Kysymys kysymys;
 	
