@@ -54,6 +54,15 @@ public class SurveytoolApplication {
 			Kysymys mielipideKysymys = kysymysRepository.save(new Kysymys("Mitä mieltä olet Haaga-Heliasta?", Kysymys.TYPE_MULTICHOICE3, kysely2));
 			Kysymys mielipide2Kysymys = kysymysRepository.save(new Kysymys("Mielestäni koodaaminen on kivaa?", Kysymys.TYPE_MULTICHOICE5, kysely2));
 			
+			//DiginTestiKyselynKysymykset
+			Kysely kysely3 = kyselyRepository.save(new Kysely("DiginKysely", Kysely.STATUS_DEPLOYED));
+			Kysymys digiKysymys1 = kysymysRepository.save(new Kysymys("Kuinka tyytyväinen olet tämän hetkiseen haaga-helian sivustoon?", Kysymys.TYPE_MULTICHOICE5, kysely3));
+			Kysymys digiKysymys2 = kysymysRepository.save(new Kysymys("Kuinka tyytyväinen olet tämän hetkiseen haaga-helian sivuston palveluiden navigointiin?", Kysymys.TYPE_MULTICHOICE5, kysely3));
+			Kysymys digiKysymys3 = kysymysRepository.save(new Kysymys("Löydätkö HH:n pääsivustolta kaiken tarvitsemasi?", Kysymys.TYPE_MULTICHOICE3, kysely3));
+			Kysymys digiKysymys4 = kysymysRepository.save(new Kysymys("Kuinka helppokäyttöiseksi koet HH:n sivut?", Kysymys.TYPE_MULTICHOICE5, kysely3));
+			Kysymys digiKysymys5 = kysymysRepository.save(new Kysymys("Haluaisitko etusivulle yhtenäisen portaalin, josta löytyy kaikki haaga-helian eri käyttöjärjestelmät? (Esim. Moodle, Mynet, Outlook)", Kysymys.TYPE_MULTICHOICE3, kysely3));
+			Kysymys digiKysymys6 = kysymysRepository.save(new Kysymys("Mitä haluaisit portaalista löytyvän lisäksi? (Esim. opiskelijajärjestöt, kalenteri)", Kysymys.TYPE_SHORT_TEXT, kysely3));
+			
 			Vastaaja vastaaja3 = vastaajaRepository.save(new Vastaaja("31.10.2019"));
 			//vastausRepository.save(new Vastaus("2 vuotta", vastaaja3, vuosiKysymys));
 			//vastausRepository.save(new Vastaus("3.6", vastaaja3, keskiarvoKysymys));
