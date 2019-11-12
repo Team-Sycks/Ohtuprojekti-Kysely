@@ -49,6 +49,8 @@ public class SurveytoolApplication {
 			Kysely kysely2 = kyselyRepository.save(new Kysely("Koulukysely", Kysely.STATUS_DEPLOYED));
 			Kysymys vuosiKysymys = kysymysRepository.save(new Kysymys("Kauan olet opiskellut Haaga-Heliassa?", Kysymys.TYPE_NUMBER, kysely2));
 			Kysymys keskiarvoKysymys = kysymysRepository.save(new Kysymys("Keskiarvosi?", Kysymys.TYPE_SHORT_TEXT, kysely2));
+			Kysymys mielipideKysymys = kysymysRepository.save(new Kysymys("Mitä mieltä olet Haaga-Heliasta?", Kysymys.TYPE_MULTICHOICE3, kysely2));
+			Kysymys mielipide2Kysymys = kysymysRepository.save(new Kysymys("Mielestäni koodaaminen on kivaa?", Kysymys.TYPE_MULTICHOICE5, kysely2));
 			
 			Vastaaja vastaaja3 = vastaajaRepository.save(new Vastaaja("31.10.2019"));
 			//vastausRepository.save(new Vastaus("2 vuotta", vastaaja3, vuosiKysymys));

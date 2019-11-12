@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Kysymys {
 	@Id
@@ -20,6 +22,7 @@ public class Kysymys {
 	private String kysymysteksti;
 	private String tyyppi;
 	
+	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, mappedBy ="kysymys")
 	private List<Vastaus> vastaukset;
 	
@@ -30,6 +33,12 @@ public class Kysymys {
 	
 	@Transient
 	public static final String TYPE_SHORT_TEXT = "short_text";
+	
+	@Transient
+	public static final String TYPE_MULTICHOICE3 = "multichoice3";
+	
+	@Transient
+	public static final String TYPE_MULTICHOICE5 = "multichoice5";
 	
 	@Transient
 	public static final String TYPE_NUMBER = "number";
