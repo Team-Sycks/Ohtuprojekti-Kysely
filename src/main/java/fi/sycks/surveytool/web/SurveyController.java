@@ -58,8 +58,9 @@ public class SurveyController {
 	
 	@RequestMapping("/muokkaakysely/{kyselyid}")
 	public String muokkaaKysely(@PathVariable("kyselyid") long kyselyid, Model model) {
-		model.addAttribute("kysely", kyselyRepository.findById(kyselyid).get());
-		model.addAttribute("kysymykset",(List<Kysymys>)kysymysRepository.findAll());
+		Kysely kysely = kyselyRepository.findById(kyselyid).get();
+		model.addAttribute("kysely", kysely);
+		model.addAttribute("kysymykset",(List<Kysymys>) kysymysRepository.findByKysely(kysely));
 		return "muokkaakysely";	
 	}
 	@RequestMapping(value = "/tallennakysely", method = RequestMethod.POST)
