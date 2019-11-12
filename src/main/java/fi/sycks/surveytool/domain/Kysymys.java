@@ -23,10 +23,9 @@ public class Kysymys {
 	private String tyyppi;
 	
 	@JsonIgnore
-	@OneToMany(cascade=CascadeType.ALL, mappedBy ="kysymys")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="kysymys")
 	private List<Vastaus> vastaukset;
 	
-
 	@ManyToOne
 	@JoinColumn(name="kyselyid")
 	private Kysely kysely;
@@ -35,13 +34,14 @@ public class Kysymys {
 	public static final String TYPE_SHORT_TEXT = "short_text";
 	
 	@Transient
-	public static final String TYPE_MULTICHOICE3 = "multichoice3";
-	
-	@Transient
-	public static final String TYPE_MULTICHOICE5 = "multichoice5";
+	public static final String TYPE_MULTICHOICE = "multichoice";
 	
 	@Transient
 	public static final String TYPE_NUMBER = "number";
+	
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.ALL, mappedBy ="kysymys")
+	private List<Monivalinta> monivalinnat;
 
 	public Kysymys() {
 	}
@@ -108,6 +108,14 @@ public class Kysymys {
 		return "Kysymys [kysymysid=" + kysymysid + ", kysymysteksti=" + kysymysteksti + ", tyyppi=" + tyyppi + this.getKysely() + "]";
 		else
 			return "Kysymys [kysymysid=" + kysymysid + ", kysymysteksti=" + kysymysteksti + ", tyyppi=" + tyyppi + "]";
+	}
+
+	public List<Monivalinta> getMonivalinnat() {
+		return monivalinnat;
+	}
+
+	public void setMonivalinnat(List<Monivalinta> monivalinnat) {
+		this.monivalinnat = monivalinnat;
 	}
 
 }

@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Monivalinta {
 	@Id
+	@JsonIgnore
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long valintaid;
 	
@@ -24,6 +25,7 @@ public class Monivalinta {
 	
 	private long järjestysNumero;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="kysymysid")
 	private Kysymys kysymys;
