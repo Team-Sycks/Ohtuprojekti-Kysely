@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Muokkaa tietoja</title>
+	<meta http-equiv="Content-Type" content="text/html" charset= "UTF-8">
+	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="container">
+	<h3>Muokkaa kyselyn tietoja</h3>
+	<div class="col-md-4">
+	
+		<form th:object="${kysely}" th:action="@{../save}" action="#" method="post">
+			<input type="hidden" th:field="*{kyselyid}"/>
+				
+				<label for="kyselynimi">Kyselyn nimi</label>
+				<input type="text" id="kyselynimi" th:field="*{kyselynimi}" class="form-control"/>
+				<div style="clear: both; display: block; height: 10px;"></div>
+				
+				<label for="deployattu">Deployaus</label>
+				<input type="text" id="deployattu" th:field="*{deployattu}" class="form-control"/>
+				<div style="clear: both; display: block; height: 10px;"></div>
+			
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<input type="submit" value="Tallenna" class="btn btn-md btn-success "></input>
+			
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<a href="/index" class="btn btn-primary">Takaisin</a>
+			</form>
+			
+			<h3>Muokkaa lomakkeen kysymyksiä</h3>
+			
+			<table>
+				<tr th:each = "kysymys : ${kysymykset}">
+					<td th:text="${kysymys.kysymysid}"></td>
+					<td th:text="${kysymys.kysymysteksti}"></td>
+					<td th:text="${kysymys.tyyppi}"></td>
+					<td>Muokkaa</td>
+				</tr>
+	</table>
+    </div>
+</div>
+</body>
+</html>

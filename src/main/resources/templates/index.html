@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>All surveys</title>
 	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
@@ -33,8 +33,9 @@
 					<td th:text="${survey.kyselyid}"></td>
 					<td th:text="${survey.kyselynimi}"></td>
 					<td th:text="${survey.deployattu}"></td>
-					<td><a th:href="@{/vastaukset/kyselyid/__${survey.kyselyid}__}">Linkki tietoihin</a></td>
+					<td><a th:href="@{/muokkaakysely/__${survey.kyselyid}__}" class="btn btn-md btn-default">Muokkaa</a></td>
 				</tr>
 	</table>
+	<a href="/lisaa" class="btn btn-md btn-success">Lisää kysely</a>
 </body>
 </html>
