@@ -9,6 +9,4 @@ import fi.sycks.surveytool.domain.Kysymys;
 
 public interface KysymysRepository extends CrudRepository<Kysymys, Long>{
 	List<Kysymys> findByKysely(Kysely kysely);
-	
-	Kysymys findByKysymysid(Long kysymysid);
 }

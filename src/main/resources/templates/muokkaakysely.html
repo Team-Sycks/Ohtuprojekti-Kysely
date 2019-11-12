@@ -10,7 +10,7 @@
 	<h3>Muokkaa kyselyn tietoja</h3>
 	<div class="col-md-4">
 	
-		<form th:object="${kysely}" th:action="@{../tallennakysely}" action="#" method="post">
+		<form th:object="${kysely}" th:action="@{../save}" action="#" method="post">
 			<input type="hidden" th:field="*{kyselyid}"/>
 				
 				<label for="kyselynimi">Kyselyn nimi</label>
@@ -35,8 +35,7 @@
 					<td th:text="${kysymys.kysymysid}"></td>
 					<td th:text="${kysymys.kysymysteksti}"></td>
 					<td th:text="${kysymys.tyyppi}"></td>
-					<td><a th:href="@{/muokkaakysymys/__${kysymys.kysymysid}__}" class="btn btn-md btn-default">Muokkaa</a></td>
-					<td>Poista</td>
+					<td>Muokkaa</td>
 				</tr>
 	</table>
     </div>

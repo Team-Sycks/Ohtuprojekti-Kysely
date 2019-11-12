@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.strong.mindbody.domain.Note;
 
 import fi.sycks.surveytool.domain.Kysely;
 import fi.sycks.surveytool.domain.Kysymys;
@@ -64,17 +63,7 @@ public class SurveyController {
 		model.addAttribute("kysymykset",(List<Kysymys>)kysymysRepository.findAll());
 		return "muokkaakysely";	
 	}
-	@RequestMapping(value = "/tallennakysely", method = RequestMethod.POST)
-	public String save(Kysely kysely) {
-		kyselyRepository.save(kysely);
-		
-		return "redirect:index";
-	}
-	@RequestMapping("/muokkaakysymys/{kysymysid}")
-	public String muokkaaKysymys(@PathVariable("kysymysid") long kysymysid, Model model) {
-		model.addAttribute("kysymys", kysymysRepository.findById(kysymysid).get());
-		return "muokkaakysymys";	
-	}
+	
 	@RequestMapping("/api/kysely") 
 	public @ResponseBody List<Kysely> getAllKyselyREST(){
 		return (List<Kysely>) kyselyRepository.findAll();
