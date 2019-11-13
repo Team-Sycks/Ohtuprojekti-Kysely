@@ -24,19 +24,17 @@
 </style>
 <body>
 	<h1 th:text="${kysely.kyselynimi}"></h1>
-	<p>Kyselyyn vastaajien lukumäärä: <p th:text="${vastaaja_lkm}"></p></p>
+	<p>Kyselyyn vastaajien lukumäärä: <p th:text="${vastaajat.size()}"></p></p>
 	<table>
         <tr>
 			<th>Kysymys</th>
-			<th:block th:each="vastaus : ${kysymys.vastaukset}">
-				<td th:text="${vastaus.vastausteksti}">vastaukset</td>
-			</th:block>
+			<th th:each="vastaaja : ${vastaajat}" th:text="${vastaaja.vastausaika}"></th>
         </tr>
 
 		<tr th:each="kysymys : ${kysymykset}">
 			<td th:text="${kysymys.kysymysteksti}"></td>
 			<th:block th:each="vastaus : ${kysymys.vastaukset}">
-				<td th:text="${vastaus.vastausteksti}">vastaukset</td>
+				<td th:text="${vastaus.vastausteksti}"/>
 			</th:block>
 		</tr>
 		</table>

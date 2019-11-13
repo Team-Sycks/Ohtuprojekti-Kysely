@@ -150,7 +150,7 @@ public class SurveyController {
 		}
 		
 		model.addAttribute("kysely", kysely);
-		model.addAttribute("vastaaja_lkm", vastaajat.size());
+		model.addAttribute("vastaajat", vastaajat);
 		model.addAttribute("kysymykset", kysymykset);
 		return "vastaus";
 	}
@@ -168,6 +168,7 @@ public class SurveyController {
 		LocalDateTime now = LocalDateTime.now();
 		Vastaaja vastaaja = new Vastaaja(dtf.format(now) + "");
 		vastaajaRepository.save(vastaaja);
+		
 		for(Vastaus vastaus : vastaukset) {
 			vastaus.setVastaaja(vastaaja);
 			vastausRepository.save(vastaus);
