@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Muokkaa tietoja</title>
+	<meta http-equiv="Content-Type" content="text/html" charset= "UTF-8">
+	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="container">
+	<h3>Muokkaa kysymyksenn tietoja</h3>
+	<div class="col-md-4">
+	
+		<form th:object="${kysymys}" th:action="@{../tallennakysymys}" action="#" method="post">
+			<input type="hidden" th:field="*{kysymysid}"/>
+				
+				<label for="kysymysteksti">Kysymyksen teksti</label>
+				<input type="text" id="kysymysteksti" th:field="*{kysymysteksti}" class="form-control"/>
+				<div style="clear: both; display: block; height: 10px;"></div>
+				
+				<label for="tyyppi">Kysymystyyppi</label>
+				<input type="text" readonly id="tyyppi" th:field="*{tyyppi}" class="form-control"/>
+				<div style="clear: both; display: block; height: 10px;"></div>
+			
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<input type="submit" value="Tallenna" class="btn btn-md btn-success "></input>
+			
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<a href="/muokkaakysely" class="btn btn-primary">Takaisin</a>
+			</form>
+	</table>
+    </div>
+</div>
+</body>
+</html>

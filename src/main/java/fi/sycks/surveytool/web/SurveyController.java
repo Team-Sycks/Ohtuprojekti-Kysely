@@ -21,12 +21,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.sycks.surveytool.domain.Kysely;
 import fi.sycks.surveytool.domain.Kysymys;
-import fi.sycks.surveytool.domain.Monivalinta;
 import fi.sycks.surveytool.domain.Vastaaja;
 import fi.sycks.surveytool.domain.Vastaus;
 import fi.sycks.surveytool.interfaces.KyselyRepository;
 import fi.sycks.surveytool.interfaces.KysymysRepository;
-import fi.sycks.surveytool.interfaces.MonivalintaRepository;
 import fi.sycks.surveytool.interfaces.UserRepository;
 import fi.sycks.surveytool.interfaces.VastaajaRepository;
 import fi.sycks.surveytool.interfaces.VastausRepository;
@@ -47,9 +45,6 @@ public class SurveyController {
 	@Autowired
 	private VastausRepository vastausRepository;
 	
-	@Autowired
-	private MonivalintaRepository monivalintaRepository;
-	
 	@RequestMapping("/login")
 	public String login() {
 		return "login";
@@ -60,12 +55,10 @@ public class SurveyController {
 		model.addAttribute("surveys",(List<Kysely>)kyselyRepository.findAll());
 		return "index";
 	}
-	
 	@RequestMapping("/muokkaakysely/{kyselyid}")
-	public String muokkaaKysely(@PathVariable("kyselyid") long kyselyid, Model model) {
-		Kysely kysely = kyselyRepository.findById(kyselyid).get();
-		model.addAttribute("kysely", kysely);
-		model.addAttribute("kysymykset",(List<Kysymys>) kysymysRepository.findByKysely(kysely));
+	public String muokkaaKysely(@PathVariable("kyselyid") Long kyselyid, Model model) {
+		model.addAttribute("kysely", kyselyRepository.findById(kyselyid).get());
+		model.addAttribute("kysymykset",(List<Kysymys>)kysymysRepository.findAll());
 		return "muokkaakysely";	
 	}
 	@RequestMapping(value = "/tallennakysely", method = RequestMethod.POST)
@@ -73,6 +66,17 @@ public class SurveyController {
 		kyselyRepository.save(kysely);
 		
 		return "redirect:index";
+	}
+	@RequestMapping("/muokkaakysymys/{kysymysid}")
+	public String muokkaaKysymys(@PathVariable("kysymysid") Long kysymysid, Model model) {
+		model.addAttribute("kysymys", kysymysRepository.findById(kysymysid).get());
+		return "muokkaakysymys";	
+	}
+	@RequestMapping(value = "/tallennakysymys", method = RequestMethod.POST)
+	public String save(Kysymys kysymys) {
+		kysymysRepository.save(kysymys);
+		
+		return "redirect:muokkaakysely";
 	}
 	@RequestMapping("/api/kysely") 
 	public @ResponseBody List<Kysely> getAllKyselyREST(){
@@ -82,13 +86,6 @@ public class SurveyController {
 	@RequestMapping("/api/kysymys")
 	public @ResponseBody List<Kysymys> getAllKysymyksetREST(){
 		return (List<Kysymys>) kysymysRepository.findAll();
-	}
-	
-	@RequestMapping("/api/monivalinta/{kysymysid}")
-	public @ResponseBody List<Monivalinta> getAllMonivalintaByKysymysIdREST(@PathVariable("kysymysid") long kysymysid){
-		Optional<Kysymys> kysymys = kysymysRepository.findById(kysymysid);
-		if(kysymys.get() == null) return new ArrayList<>();
-		return (List<Monivalinta>) monivalintaRepository.findByKysymys(kysymys.get());
 	}
 	
 	@RequestMapping("/api/kysymys/kyselyid/{kyselyid}")
@@ -126,11 +123,9 @@ public class SurveyController {
 		return kyselyVastaukset;
 	}
 	
-	@GetMapping(value ="/vastaus/{kyselyid}")
-	public String getVastauksetToKysely(@PathVariable("kyselyid") long kyselyid, Model model) {
-		Kysely kysely = kyselyRepository.findById(kyselyid).get();
-		List<Kysymys> kysymykset = 
-				(List<Kysymys>) kysymysRepository.findByKysely(kysely);
+	@GetMapping(value ="/vastaus")
+	public String getVastausOneQuestion(Model model) {
+		List<Kysymys> kysymykset = (List<Kysymys>) kysymysRepository.findAll();
 		
 		Collections.sort(kysymykset, new Comparator<Kysymys>() {
 			public int compare (Kysymys o1, Kysymys o2) {
@@ -138,19 +133,6 @@ public class SurveyController {
 			}
 		});
 		
-		List<Vastaaja> vastaajat = new ArrayList<>();
-		for(Kysymys kysymys : kysymykset) {
-			List<Vastaus> vastaukset = kysymys.getVastaukset();
-			for(Vastaus vastaus : vastaukset) {
-				Vastaaja vastaaja = vastaus.getVastaaja();
-				if(!vastaajat.contains(vastaaja)) {
-					vastaajat.add(vastaaja);
-				}
-			}
-		}
-		
-		model.addAttribute("kysely", kysely);
-		model.addAttribute("vastaajat", vastaajat);
 		model.addAttribute("kysymykset", kysymykset);
 		return "vastaus";
 	}
@@ -168,7 +150,6 @@ public class SurveyController {
 		LocalDateTime now = LocalDateTime.now();
 		Vastaaja vastaaja = new Vastaaja(dtf.format(now) + "");
 		vastaajaRepository.save(vastaaja);
-		
 		for(Vastaus vastaus : vastaukset) {
 			vastaus.setVastaaja(vastaaja);
 			vastausRepository.save(vastaus);
@@ -178,12 +159,6 @@ public class SurveyController {
 	@GetMapping("/vastaajat")
 	public @ResponseBody List<Vastaaja> all1() {
 		return (List<Vastaaja>) vastaajaRepository.findAll();
-	}
-	@PostMapping("/lisaa")
-	public String luoKysely(Kysely kysely) {
-		kysely = new Kysely("",  Kysely.STATUS_NOT_DEPLOYED);
-		kyselyRepository.save(kysely);
-		return "redirect:index";
 	}
 	
 

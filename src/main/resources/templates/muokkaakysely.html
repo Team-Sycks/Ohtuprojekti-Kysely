@@ -35,7 +35,7 @@
 					<td th:text="${kysymys.kysymysid}"></td>
 					<td th:text="${kysymys.kysymysteksti}"></td>
 					<td th:text="${kysymys.tyyppi}"></td>
-					<td>Muokkaa</td>
+					<td><a th:href="@{/muokkaakysymys/__${kysymys.kysymysid}__}" class="btn btn-md btn-default">Muokkaa</a></td>
 				</tr>
 	</table>
     </div>
