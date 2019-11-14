@@ -32,13 +32,13 @@ public class Kysymys {
 	private Kysely kysely;
 	
 	@Transient
-	public static final String TYPE_SHORT_TEXT = "short_text";
+	public static final String TYPE_SHORT_TEXT = "vapaa_teksti";
 	
 	@Transient
-	public static final String TYPE_MULTICHOICE = "multichoice";
+	public static final String TYPE_MULTICHOICE = "monivalinta";
 	
 	@Transient
-	public static final String TYPE_NUMBER = "number";
+	public static final String TYPE_NUMBER = "numero";
 	
 	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, mappedBy ="kysymys")
