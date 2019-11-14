@@ -60,6 +60,10 @@ public class SurveyController {
 		Kysely kysely = kyselyRepository.findById(kyselyid).get();
 		model.addAttribute("kysely", kysely);
 		model.addAttribute("kysymykset",(List<Kysymys>)kysymysRepository.findByKysely(kysely));
+		List<String> status = new ArrayList<>();
+		status.add(Kysely.STATUS_DEPLOYED);
+		status.add(Kysely.STATUS_NOT_DEPLOYED);
+		model.addAttribute("status", status);
 		return "muokkaakysely";	
 	}
 	@RequestMapping(value = "/tallennakysely", method = RequestMethod.POST)

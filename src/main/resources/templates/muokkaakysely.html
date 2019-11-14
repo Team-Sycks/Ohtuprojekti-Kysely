@@ -17,9 +17,9 @@
 				<input type="text" id="kyselynimi" th:field="*{kyselynimi}" class="form-control"/>
 				<div style="clear: both; display: block; height: 10px;"></div>
 				
-				<label for="deployattu">Deployaus</label>
-				<input type="text" id="deployattu" th:field="*{deployattu}" class="form-control"/>
-				<div style="clear: both; display: block; height: 10px;"></div>
+				<p>Deployaus: <select  style="width: 300px" id="deplist" th:field="*{deployattu}" class="form-control"> 
+       		<option th:each="deployattu: ${status}" th:value="${deployattu}" th:text="${deployattu}"></option>
+    	</select> </p>
 			
 				<div style="clear: both; display: block; height: 10px;"></div>
 				<input type="submit" value="Tallenna" class="btn btn-md btn-success "></input>
