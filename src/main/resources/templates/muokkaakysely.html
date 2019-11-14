@@ -36,6 +36,7 @@
 					<td><a th:text="${kysymys.kysymysteksti}" th:href="@{/katsovastaukset/{kysymysid}(kysymysid=${kysymys.kysymysid})}" ></a></td>
 					<td th:text="${kysymys.tyyppi}"></td>
 					<td><a th:href="@{/muokkaakysymys/__${kysymys.kysymysid}__}" class="btn btn-md btn-default">Muokkaa</a></td>
+					<td><a th:href="@{/poistakysymys/__${kysymys.kysymysid}__}" class="btn btn-md btn-danger" onclick="return confirm('Haluatko varmasti poistaa kysymyksen?');">Poista</a></td>
 				</tr>
 	</table>
     </div>

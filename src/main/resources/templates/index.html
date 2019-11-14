@@ -35,11 +35,12 @@
 					<td th:text="${survey.deployattu}"></td>
 					<td><a th:href="@{/vastaukset/kyselyid/__${survey.kyselyid}__}">Linkki tietoihin</a></td>
 					<td><a th:href="@{/muokkaakysely/__${survey.kyselyid}__}" class="btn btn-md btn-default">Muokkaa</a></td>
+					<td><a th:href="@{/poistakysely/__${survey.kyselyid}__}" class="btn btn-md btn-danger" onclick="return confirm('Haluatko varmasti poistaa kyselyn?');">Poista</a></td>
 				</tr>
 	</table>
 	<div class="col-md-4" style="padding:20px 0">
 		<form th:action="@{/lisaa}" method="post">
-			<input type="submit" value="Lisää kysely" class="btn btn-sm btn-danger"/>
+			<input type="submit" value="Lisää kysely" class="btn btn-sm btn-success"/>
 		</form>
 	</div>
 </body>
