@@ -164,6 +164,11 @@ public class SurveyController {
 	public @ResponseBody List<Vastaaja> all1() {
 		return (List<Vastaaja>) vastaajaRepository.findAll();
 	}
-	
+	@PostMapping("/lisaa")
+	public String luoKysely(Kysely kysely) {
+		kysely = new Kysely("",  Kysely.STATUS_NOT_DEPLOYED);
+		kyselyRepository.save(kysely);
+		return "redirect:index";
+	}
 
 }

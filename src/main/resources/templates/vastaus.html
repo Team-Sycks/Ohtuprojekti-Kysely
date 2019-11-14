@@ -33,10 +33,10 @@
 	</div>
 	<h3>Vastaukset kysymykseen</h3>
 	<table>
-	<th>Vastaaja Id</th>
+	<th>Vastausaika</th>
 	<th>Vastaus</th>
 	<tr th:each = "vastaus : ${kysymys.vastaukset}">
-					<td th:text="${vastaus.vastausid}"></td>
+					<td th:text="${vastaus.vastaaja.vastausaika}"></td>
 					<td th:text="${vastaus.vastausteksti}"></td>
 					</tr>
 			
