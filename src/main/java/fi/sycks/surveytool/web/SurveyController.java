@@ -90,8 +90,10 @@ public class SurveyController {
 	}
 	@RequestMapping(value = "/poistakysymys/{kysymysid}")
 	public String poistaKysymys(@PathVariable("kysymysid") Long kysymysid, Model model) {
+		Optional<Kysymys> kysymys = kysymysRepository.findById(kysymysid);
+		Kysely kysely = kyselyRepository.findById(kysymys.get().getKysely().getKyselyid()).get();
 		kysymysRepository.deleteById(kysymysid);
-		return "redirect:../muokkaakysely";
+		return "redirect:/muokkaakysely/"+kysely.getKyselyid();
 	}
 	
 	@RequestMapping("/api/kysely") 
