@@ -67,6 +67,11 @@ public class SurveyController {
 		
 		return "redirect:index";
 	}
+	@RequestMapping(value = "/poistakysely/{kyselyid}")
+	public String poistaKysely(@PathVariable("kyselyid") Long kyselyid, Model model) {
+		kyselyRepository.deleteById(kyselyid);
+		return "redirect:../index";
+	}
 	@RequestMapping("/muokkaakysymys/{kysymysid}")
 	public String muokkaaKysymys(@PathVariable("kysymysid") Long kysymysid, Model model) {
 		model.addAttribute("kysymys", kysymysRepository.findById(kysymysid).get());
@@ -78,6 +83,12 @@ public class SurveyController {
 		
 		return "redirect:muokkaakysely";
 	}
+	@RequestMapping(value = "/poistakysymys/{kysymysid}")
+	public String poistaKysymys(@PathVariable("kysymysid") Long kysymysid, Model model) {
+		kysymysRepository.deleteById(kysymysid);
+		return "redirect:../muokkaakysely";
+	}
+	
 	@RequestMapping("/api/kysely") 
 	public @ResponseBody List<Kysely> getAllKyselyREST(){
 		return (List<Kysely>) kyselyRepository.findAll();
