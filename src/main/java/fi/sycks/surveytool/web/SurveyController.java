@@ -57,9 +57,8 @@ public class SurveyController {
 	}
 	@RequestMapping("/muokkaakysely/{kyselyid}")
 	public String muokkaaKysely(@PathVariable("kyselyid") Long kyselyid, Model model) {
-		Kysely kysely = kyselyRepository.findById(kyselyid).get();
-		model.addAttribute("kysely", kysely);
-		model.addAttribute("kysymykset",(List<Kysymys>)kysymysRepository.findByKysely(kysely));
+		model.addAttribute("kysely", kyselyRepository.findById(kyselyid).get());
+		model.addAttribute("kysymykset",(List<Kysymys>)kysymysRepository.findAll());
 		return "muokkaakysely";	
 	}
 	@RequestMapping(value = "/tallennakysely", method = RequestMethod.POST)
@@ -76,6 +75,11 @@ public class SurveyController {
 	@RequestMapping("/muokkaakysymys/{kysymysid}")
 	public String muokkaaKysymys(@PathVariable("kysymysid") Long kysymysid, Model model) {
 		model.addAttribute("kysymys", kysymysRepository.findById(kysymysid).get());
+		List<String> tyypit = new ArrayList<>();
+		tyypit.add(Kysymys.TYPE_MULTICHOICE);
+		tyypit.add(Kysymys.TYPE_NUMBER);
+		tyypit.add(Kysymys.TYPE_SHORT_TEXT);
+		model.addAttribute("tyypit", tyypit);
 		return "muokkaakysymys";	
 	}
 	@RequestMapping(value = "/tallennakysymys", method = RequestMethod.POST)
@@ -166,9 +170,10 @@ public class SurveyController {
 		return (List<Vastaaja>) vastaajaRepository.findAll();
 	}
 	@PostMapping("/lisaa")
-	public String luoKysely() {
-		Kysely kysely = kyselyRepository.save(new Kysely("",  Kysely.STATUS_NOT_DEPLOYED));
-		return "redirect:muokkaakysely/" + kysely.getKyselyid();
+	public String luoKysely(Kysely kysely) {
+		kysely = new Kysely("",  Kysely.STATUS_NOT_DEPLOYED);
+		kyselyRepository.save(kysely);
+		return "redirect:index";
 	}
 
 }
