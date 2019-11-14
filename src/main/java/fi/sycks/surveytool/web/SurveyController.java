@@ -182,5 +182,14 @@ public class SurveyController {
 		kyselyRepository.save(kysely);
 		return "redirect:index";
 	}
+	@PostMapping("/muokkaakysely/{kyselyid}")
+	    public String lisaaKysymys(@PathVariable("kyselyid") Long kyselyid, Model model) {
+	        Kysely kysely = kyselyRepository.findById(kyselyid).get();
+	        model.addAttribute("kysely", kysely);
+	        Kysymys kysymys = new Kysymys("", Kysymys.TYPE_SHORT_TEXT, kysely);
+	        kysymysRepository.save(kysymys);
+	        
+	        return "redirect:/muokkaakysely/"+kysely.getKyselyid();    
+	    }
 
 }

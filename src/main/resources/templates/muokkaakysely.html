@@ -39,6 +39,11 @@
 					<td><a th:href="@{/poistakysymys/__${kysymys.kysymysid}__}" class="btn btn-md btn-danger" onclick="return confirm('Haluatko varmasti poistaa kysymyksen?');">Poista</a></td>
 				</tr>
 	</table>
+	     <div class="col-md-4" style="padding:20px 0">
+        <form th:action="@{/muokkaakysely/{kyselyid}(kyselyid=${kysely.kyselyid})}" method="post">
+            <input type="submit" value="Lisää kysymys" class="btn btn-sm btn-success"/>
+        </form>
+    </div>
     </div>
 </div>
 </body>
