@@ -33,7 +33,7 @@
 			<table>
 				<tr th:each = "kysymys : ${kysymykset}">
 					<td th:text="${kysymys.kysymysid}"></td>
-					<td th:text="${kysymys.kysymysteksti}"></td>
+					<td><a th:text="${kysymys.kysymysteksti}" th:href="@{/katsovastaukset/{kysymysid}(kysymysid=${kysymys.kysymysid})}" ></a></td>
 					<td th:text="${kysymys.tyyppi}"></td>
 					<td><a th:href="@{/muokkaakysymys/__${kysymys.kysymysid}__}" class="btn btn-md btn-default">Muokkaa</a></td>
 				</tr>

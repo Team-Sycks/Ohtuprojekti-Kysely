@@ -23,23 +23,25 @@
 	}
 </style>
 <body>
-	<h1 th:text="${kysely.kyselynimi}"></h1>
-	<p>Kyselyyn vastaajien lukumäärä: <p th:text="${vastaajat.size()}"></p></p>
-	<table>
-        <tr>
-			<th>Kysymys</th>
-			<th th:each="vastaaja : ${vastaajat}" th:text="${vastaaja.vastausaika}"></th>
-        </tr>
+<div class="container">
+<div class="col-md-4">
+<div style="clear: both; display: block; height: 10px;"></div>
+				<a href="/index" class="btn btn-primary">Takaisin</a>
 
-		<tr th:each="kysymys : ${kysymykset}">
-			<td th:text="${kysymys.kysymysteksti}"></td>
-			<th:block th:each="vastaus : ${kysymys.vastaukset}">
-				<td th:text="${vastaus.vastausteksti}"/>
-			</th:block>
-		</tr>
-		</table>
-		<div>
-		
-		</div>
+	<h3 th:text="${kysymys.kysymysteksti}">Kysymysnimi</h3>
+	
+	</div>
+	<h3>Vastaukset kysymykseen</h3>
+	<table>
+	<th>Vastaaja Id</th>
+	<th>Vastaus</th>
+	<tr th:each = "vastaus : ${kysymys.vastaukset}">
+					<td th:text="${vastaus.vastausid}"></td>
+					<td th:text="${vastaus.vastausteksti}"></td>
+					</tr>
+			
+	</table>
+	</div>
+     
 </body>
 </html>

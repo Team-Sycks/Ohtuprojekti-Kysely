@@ -123,18 +123,11 @@ public class SurveyController {
 		return kyselyVastaukset;
 	}
 	
-	@GetMapping(value ="/vastaus")
-	public String getVastausOneQuestion(Model model) {
-		List<Kysymys> kysymykset = (List<Kysymys>) kysymysRepository.findAll();
-		
-		Collections.sort(kysymykset, new Comparator<Kysymys>() {
-			public int compare (Kysymys o1, Kysymys o2) {
-				return o1.getKysymysteksti().compareTo(o2.getKysymysteksti());
-			}
-		});
-		
-		model.addAttribute("kysymykset", kysymykset);
-		return "vastaus";
+	@RequestMapping("/katsovastaukset/{kysymysid}")
+	public String ktasoVastaukset(@PathVariable("kysymysid") Long kysymysid, Model model) {
+		model.addAttribute("kysymys", kysymysRepository.findById(kysymysid).get());
+		model.addAttribute("vastaukset",(List<Vastaus>)vastausRepository.findAll());
+		return "vastaus";	
 	}
 	
 	@GetMapping("/vastaukset")
