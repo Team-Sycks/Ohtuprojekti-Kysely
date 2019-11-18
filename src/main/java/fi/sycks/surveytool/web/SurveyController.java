@@ -192,7 +192,7 @@ public class SurveyController {
 	@PostMapping("/lisaa")
 	public String luoKysely() {
 		Kysely kysely = kyselyRepository.save(new Kysely("",  Kysely.STATUS_NOT_DEPLOYED));
-		return "redirect:index/muokkaakysely/" + kysely.getKyselyid();
+		return "redirect:/muokkaakysely/" + kysely.getKyselyid();
 	}
 	
 	@PostMapping("/muokkaakysely/{kyselyid}")
@@ -202,7 +202,7 @@ public class SurveyController {
 	    Kysymys kysymys = new Kysymys("", Kysymys.TYPE_SHORT_TEXT, kysely);
 	    kysymys = kysymysRepository.save(kysymys);
 	        
-	    return "redirect:/muokkaakysymys/"+ kysymys.getKysymysid();    
+	    return "redirect:/muokkaakysymys/"+ kysymys.getKysymysid();
 	}
 
 }
