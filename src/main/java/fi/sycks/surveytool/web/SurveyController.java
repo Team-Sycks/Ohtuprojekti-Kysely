@@ -127,7 +127,7 @@ public class SurveyController {
 	@RequestMapping("/api/monivalinta/{kysymysid}")
 	public @ResponseBody List<Monivalinta> getMonivalinnatByKysymysIdREST(@PathVariable("kysymysid") long kysymysid){
 		Optional<Kysymys> kysymys = kysymysRepository.findById(kysymysid);
-		if(kysymys.isEmpty()) return new ArrayList<>();
+		if(kysymys.get() == null) return new ArrayList<>();
 		return (List<Monivalinta>) monivalintaRepository.findByKysymys(kysymys.get());
 	}
 	
