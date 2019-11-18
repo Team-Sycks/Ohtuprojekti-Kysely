@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.sycks.surveytool.domain.Kysely;
 import fi.sycks.surveytool.domain.Kysymys;
+import fi.sycks.surveytool.domain.Monivalinta;
 import fi.sycks.surveytool.domain.Vastaaja;
 import fi.sycks.surveytool.domain.Vastaus;
 import fi.sycks.surveytool.interfaces.KyselyRepository;
 import fi.sycks.surveytool.interfaces.KysymysRepository;
+import fi.sycks.surveytool.interfaces.MonivalintaRepository;
 import fi.sycks.surveytool.interfaces.UserRepository;
 import fi.sycks.surveytool.interfaces.VastaajaRepository;
 import fi.sycks.surveytool.interfaces.VastausRepository;
@@ -44,6 +46,9 @@ public class SurveyController {
 	
 	@Autowired
 	private VastausRepository vastausRepository;
+	
+	@Autowired
+	private MonivalintaRepository monivalintaRepository;
 	
 	@RequestMapping("/login")
 	public String login() {
@@ -116,6 +121,13 @@ public class SurveyController {
 		Optional<Kysely> kysely = kyselyRepository.findById(kyselyid);
 		if(kysely.get() == null) return new ArrayList<>();
 		return (List<Kysymys>) kysymysRepository.findByKysely(kysely.get());
+	}
+	
+	@RequestMapping("/api/monivalinta/{kysymysid}")
+	public @ResponseBody List<Monivalinta> getMonivalinnatByKysymysIdREST(@PathVariable("kysymysid") long kysymysid){
+		Optional<Kysymys> kysymys = kysymysRepository.findById(kysymysid);
+		if(kysymys.isEmpty()) return new ArrayList<>();
+		return (List<Monivalinta>) monivalintaRepository.findByKysymys(kysymys.get());
 	}
 	
 	@RequestMapping("/api/vastaaja") 
