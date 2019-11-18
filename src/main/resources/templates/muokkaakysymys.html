@@ -7,12 +7,12 @@
 </head>
 <body>
 	<div class="container">
-	<h3>Muokkaa kysymyksenn tietoja</h3>
+	<h3>Muokkaa kysymyksen tietoja</h3>
 	<div class="col-md-4">
 	
 		<form th:object="${kysymys}" th:action="@{../tallennakysymys}" action="#" method="post">
 			<input type="hidden" th:field="*{kysymysid}"/>
-				
+			<input type="hidden" th:field="*{kysely}" />
 				<label for="kysymysteksti">Kysymyksen teksti</label>
 				<input type="text" id="kysymysteksti" th:field="*{kysymysteksti}" class="form-control"/>
 				<div style="clear: both; display: block; height: 10px;"></div>

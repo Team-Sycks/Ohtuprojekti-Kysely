@@ -92,11 +92,12 @@ public class SurveyController {
 		model.addAttribute("tyypit", tyypit);
 		return "muokkaakysymys";	
 	}
+	
 	@RequestMapping(value = "/tallennakysymys", method = RequestMethod.POST)
 	public String save(Kysymys kysymys) {
-		kysymysRepository.save(kysymys);
+		kysymys = kysymysRepository.save(kysymys);
 		
-		return "redirect:muokkaakysely";
+		return "redirect:muokkaakysely/" + kysymys.getKysely().getKyselyid();
 	}
 	@RequestMapping(value = "/poistakysymys/{kysymysid}")
 	public String poistaKysymys(@PathVariable("kysymysid") Long kysymysid, Model model) {
@@ -159,7 +160,7 @@ public class SurveyController {
 	}
 	
 	@RequestMapping("/katsovastaukset/{kysymysid}")
-	public String ktasoVastaukset(@PathVariable("kysymysid") Long kysymysid, Model model) {
+	public String katsoVastaukset(@PathVariable("kysymysid") Long kysymysid, Model model) {
 		model.addAttribute("kysymys", kysymysRepository.findById(kysymysid).get());
 		model.addAttribute("vastaukset",(List<Vastaus>)vastausRepository.findAll());
 		return "vastaus";	
@@ -189,19 +190,19 @@ public class SurveyController {
 		return (List<Vastaaja>) vastaajaRepository.findAll();
 	}
 	@PostMapping("/lisaa")
-	public String luoKysely(Kysely kysely) {
-		kysely = new Kysely("",  Kysely.STATUS_NOT_DEPLOYED);
-		kyselyRepository.save(kysely);
-		return "redirect:index";
+	public String luoKysely() {
+		Kysely kysely = kyselyRepository.save(new Kysely("",  Kysely.STATUS_NOT_DEPLOYED));
+		return "redirect:index/muokkaakysely/" + kysely.getKyselyid();
 	}
+	
 	@PostMapping("/muokkaakysely/{kyselyid}")
-	    public String lisaaKysymys(@PathVariable("kyselyid") Long kyselyid, Model model) {
-	        Kysely kysely = kyselyRepository.findById(kyselyid).get();
-	        model.addAttribute("kysely", kysely);
-	        Kysymys kysymys = new Kysymys("", Kysymys.TYPE_SHORT_TEXT, kysely);
-	        kysymysRepository.save(kysymys);
+	public String lisaaKysymys(@PathVariable("kyselyid") Long kyselyid, Model model) {
+		Kysely kysely = kyselyRepository.findById(kyselyid).get();
+	    model.addAttribute("kysely", kysely);
+	    Kysymys kysymys = new Kysymys("", Kysymys.TYPE_SHORT_TEXT, kysely);
+	    kysymys = kysymysRepository.save(kysymys);
 	        
-	        return "redirect:/muokkaakysely/"+kysely.getKyselyid();    
-	    }
+	    return "redirect:/muokkaakysymys/"+ kysymys.getKysymysid();    
+	}
 
 }
