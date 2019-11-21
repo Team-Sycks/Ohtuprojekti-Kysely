@@ -1,10 +1,28 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<title>Muokkaa tietoja</title>
 	<meta http-equiv="Content-Type" content="text/html" charset= "UTF-8">
 	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
 </head>
+<style>
+	table {
+  	font-family: arial, sans-serif;
+ 	border-collapse: collapse;
+  	width: 100%;
+	}
+
+	td, th {
+	border: 1px solid #dddddd;
+  	text-align: left;
+  	padding: 8px;
+	}
+
+	tr:nth-child(even) {
+  	background-color: #dddddd;
+	}
+</style>
 <body>
 	<div class="container">
 	<h3>Muokkaa kyselyn tietoja</h3>
