@@ -22,7 +22,7 @@ public class Vastaus {
 	private Vastaaja vastaaja;
 	
 	@ManyToOne
-	@JsonIgnore
+	
 	@JoinColumn(name="kysymysid")
 	private Kysymys kysymys;
 	
