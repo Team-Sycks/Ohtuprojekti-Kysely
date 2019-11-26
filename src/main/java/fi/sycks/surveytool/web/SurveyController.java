@@ -174,19 +174,22 @@ public class SurveyController {
 	
 	
 	@PostMapping("/vastaukset")
-	public @ResponseBody void vastausKyselyyn(@RequestBody Vastaus[] vastaukset) {
+	public @ResponseBody void vastausKyselyyn(@RequestBody Vastaus[] vastaukset) throws Exception {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		LocalDateTime now = LocalDateTime.now();
 		
 		if(vastaukset.length > 0) {
 			Vastaus v = vastaukset[0];
-			long id = v.getKysymys().getKysely().getKyselyid();
+			long kysymysId= v.getKysymys().getKysymysid();
+			Optional<Kysymys> kysymys = kysymysRepository.findById(kysymysId);
+			long id = kysymys.get().getKysely().getKyselyid();
 			
 			Optional<Kysely> kysely = kyselyRepository.findById(id);
 			String status = kysely.get().getDeployattu();
 			
 			if(status.equals(Kysely.STATUS_NOT_DEPLOYED)) {
-				return;
+				
+				throw new Exception("not deployed");
 			}
 		}
 		
