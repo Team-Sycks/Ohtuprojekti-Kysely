@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+     <link type="text/css"rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" /> 
+</head>
+<style>
+	table {
+  	font-family: arial, sans-serif;
+ 	border-collapse: collapse;
+  	width: 70%;
+	}
+
+	td, th {
+	border: 1px solid #dddddd;
+  	text-align: left;
+  	padding: 8px;
+	}
+
+	tr:nth-child(even) {
+  	background-color: #dddddd;
+	}
+</style>
+<body>
+<div class="container">
+<div class="col-md-4">
+<div style="clear: both; display: block; height: 10px;"></div>
+				<a href="/index" class="btn btn-primary">Takaisin</a>
+	
+	</div>
+	<h3>Vastaukset kyselyyn</h3>
+	<table>
+		<tr>
+			<th>Vastausid</th>
+			<th>Vastaajaid</th>
+			<th>Kysymysteksti</th>
+			<th>Vastaus</th>
+		</tr>
+			<tr th:each = "vastaus : ${kaikkivastaukset}">
+				<td th:text="${vastaus.vastausid}">
+				<td th:text="${vastaus.vastaaja.vastaajaid}">
+				<td th:text="${vastaus.kysymys.kysymysteksti}">
+				<td th:text="${vastaus.vastausteksti}"></td>
+			</tr>	
+	</table>
+	</div>
+     
+</body>
+</html>

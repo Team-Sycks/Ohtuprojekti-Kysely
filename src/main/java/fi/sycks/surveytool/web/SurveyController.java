@@ -158,7 +158,24 @@ public class SurveyController {
 		
 		return kyselyVastaukset;
 	}
-	
+	@RequestMapping("/kaikkivastaukset/kyselyid/{kyselyid}")
+	public String kaikkiVastauksetKyselyyn(@PathVariable("kyselyid") long kyselyid, Model model) {
+		List<Vastaus> vastaukset =  (List<Vastaus>) vastausRepository.findAll();
+		Optional<Kysely> kysely = kyselyRepository.findById(kyselyid);
+		
+		List<Vastaus> kyselyVastaukset = new ArrayList<>();
+		if(kysely.get() != null) {
+			for(Vastaus vastaus : vastaukset) {
+				Kysymys kysymys = vastaus.getKysymys();
+				if(kysymys.getKysely().getKyselyid() == kysely.get().getKyselyid()) {
+					kyselyVastaukset.add(vastaus);
+				}
+			}	
+		}
+		
+		model.addAttribute("kaikkivastaukset", kyselyVastaukset);
+		return "kaikkivastaukset";
+	}
 	@RequestMapping("/katsovastaukset/{kysymysid}")
 	public String katsoVastaukset(@PathVariable("kysymysid") Long kysymysid, Model model) {
 		model.addAttribute("kysymys", kysymysRepository.findById(kysymysid).get());
