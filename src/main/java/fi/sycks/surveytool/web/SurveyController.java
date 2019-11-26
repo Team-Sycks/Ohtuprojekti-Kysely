@@ -177,6 +177,19 @@ public class SurveyController {
 	public @ResponseBody void vastausKyselyyn(@RequestBody Vastaus[] vastaukset) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		LocalDateTime now = LocalDateTime.now();
+		
+		if(vastaukset.length > 0) {
+			Vastaus v = vastaukset[0];
+			long id = v.getKysymys().getKysely().getKyselyid();
+			
+			Optional<Kysely> kysely = kyselyRepository.findById(id);
+			String status = kysely.get().getDeployattu();
+			
+			if(status.equals(Kysely.STATUS_NOT_DEPLOYED)) {
+				return;
+			}
+		}
+		
 		Vastaaja vastaaja = new Vastaaja(dtf.format(now) + "");
 		vastaajaRepository.save(vastaaja);
 		for(Vastaus vastaus : vastaukset) {
