@@ -168,13 +168,6 @@ public class SurveyController {
 		return "vastaus";	
 	}
 	
-	@GetMapping("/api/vastaukset")
-	public @ResponseBody List<Vastaus> all() {
-		return (List<Vastaus>) vastausRepository.findAll();
-	}
-	
-	
-	
 	@PostMapping("/api/vastaukset")
 	public @ResponseBody void vastausKyselyyn(@RequestBody Vastaus[] vastaukset) throws Exception {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
