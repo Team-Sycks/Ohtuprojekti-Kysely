@@ -215,5 +215,9 @@ public class SurveyController {
 	        
 	    return "redirect:/muokkaakysymys/"+ kysymys.getKysymysid();
 	}
+	@GetMapping("/help")
+	public String restApiDoc() {
+		return "help";
+	}
 
 }
