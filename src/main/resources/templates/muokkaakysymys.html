@@ -29,7 +29,10 @@
 				<input type="submit" value="Tallenna" class="btn btn-md btn-success "></input>
 			
 				<div style="clear: both; display: block; height: 10px;"></div>
-				<a href="/muokkaakysely" class="btn btn-primary">Takaisin</a>
+				<!-- <a th:href="/muokkaakysely/__*{kysely.kyselyid}__" class="btn btn-primary">Takaisin</a>-->
+				
+				<a th:href="@{'/muokkaakysely/'+ *{kysely.kyselyid}}" class="btn btn-primary">Takaisin</a>
+				
 			</form>
 	</table>
     </div>

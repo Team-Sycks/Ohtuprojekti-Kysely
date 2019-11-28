@@ -106,7 +106,7 @@ public class Kysymys {
 	public String toString() {
 		
 		if(this.kysely !=null)
-		return "Kysymys [kysymysid=" + kysymysid + ", kysymysteksti=" + kysymysteksti + ", tyyppi=" + tyyppi + this.getKysely() + "]";
+		return "Kysymys [kysymysid=" + kysymysid + ", kysymysteksti=" + kysymysteksti + ", tyyppi=" + tyyppi + ", " + this.getKysely() + "]";
 		else
 			return "Kysymys [kysymysid=" + kysymysid + ", kysymysteksti=" + kysymysteksti + ", tyyppi=" + tyyppi + "]";
 	}
