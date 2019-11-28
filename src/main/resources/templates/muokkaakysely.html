@@ -49,6 +49,11 @@
 			<h3>Muokkaa lomakkeen kysymyksiä</h3>
 			
 			<table>
+				<tr>
+					<th>Kysymys-id</th>
+					<th>Kysymyksen teksti</th>
+					<th>Kysymystyyppi</th>
+				</tr>
 				<tr th:each = "kysymys : ${kysymykset}">
 					<td th:text="${kysymys.kysymysid}"></td>
 					<td><a th:text="${kysymys.kysymysteksti}" th:href="@{/katsovastaukset/{kysymysid}(kysymysid=${kysymys.kysymysid})}" ></a></td>
