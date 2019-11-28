@@ -29,6 +29,11 @@
 		</form>
 	</div>
 	<table>
+				<tr>
+					<th>Kysely-id</th>
+					<th>Kyselyn nimi</th>
+					<th>Ylhäällä/alhaalla</th>
+				</tr>
 				<tr th:each = "survey : ${surveys}">
 					<td th:text="${survey.kyselyid}"></td>
 					<td th:text="${survey.kyselynimi}"></td>
