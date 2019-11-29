@@ -25,6 +25,10 @@
        		<option th:each="tyyppi: ${tyypit}" th:value="${tyyppi}" th:text="${tyyppi}"></option>
     	</select> </p>
 			
+			<p>Monivalinta vaihtoehto: <input type="text" th:field="${monivalinta.valintanimi}" /></p>
+			
+			
+			<input type="submit" value="Lisää vaihtoehto" class="btn btn-md btn-success "></input>
 				<div style="clear: both; display: block; height: 10px;"></div>
 				<input type="submit" value="Tallenna" class="btn btn-md btn-success "></input>
 			
@@ -34,6 +38,11 @@
 				<a th:href="@{'/muokkaakysely/'+ *{kysely.kyselyid}}" class="btn btn-primary">Takaisin</a>
 				
 			</form>
+			<table>
+			<tr th:each="monivalinta: ${monivalinnat}">
+			<td th:text="${monivalinta.valintanimi}"></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/poistavalinta/{id}(id=${monivalinta.valintaid})}" class="btn btn-danger">Poista</a></td>
+			</tr>
 	</table>
     </div>
 </div>
