@@ -84,24 +84,34 @@ public class SurveyController {
 	}
 	@RequestMapping("/muokkaakysymys/{kysymysid}")
 	public String muokkaaKysymys(@PathVariable("kysymysid") Long kysymysid, Model model) {
-		model.addAttribute("kysymys", kysymysRepository.findById(kysymysid).get());
+		Kysymys kysymys = kysymysRepository.findById(kysymysid).get();
+		model.addAttribute("kysymys", kysymys);
 		List<String> tyypit = new ArrayList<>();
 		tyypit.add(Kysymys.TYPE_MULTICHOICE);
 		tyypit.add(Kysymys.TYPE_NUMBER);
 		tyypit.add(Kysymys.TYPE_SHORT_TEXT);
 		model.addAttribute("tyypit", tyypit);
-		model.addAttribute("monivalinta", new Monivalinta());
-		List<Monivalinta> monivalinnat =(List<Monivalinta>) monivalintaRepository.findAll();
+		
+		Monivalinta monivalinta = new Monivalinta();
+		monivalinta.setKysymys(kysymys);
+		model.addAttribute("monivalinta", monivalinta);
+		List<Monivalinta> monivalinnat = (List<Monivalinta>) monivalintaRepository.findByKysymys(kysymys);
 		model.addAttribute("monivalinnat", monivalinnat);
 		return "muokkaakysymys";	
 	}
 	
 	@RequestMapping(value = "/tallennakysymys", method = RequestMethod.POST)
-	public String save(Kysymys kysymys, Monivalinta monivalinta) {
+	public String save(Kysymys kysymys) {
 		kysymys = kysymysRepository.save(kysymys);
-		monivalinta = monivalintaRepository.save(monivalinta);
 		return "redirect:muokkaakysely/" + kysymys.getKysely().getKyselyid();
 	}
+	
+	@RequestMapping(value = "/tallennavalinta", method = RequestMethod.POST)
+	public String save(Monivalinta monivalinta) {
+		monivalinta = monivalintaRepository.save(monivalinta);
+		return "redirect:muokkaakysymys/" + monivalinta.getKysymys().getKysymysid();
+	}
+	
 	@RequestMapping(value = "/poistakysymys/{kysymysid}")
 	public String poistaKysymys(@PathVariable("kysymysid") Long kysymysid, Model model) {
 		Optional<Kysymys> kysymys = kysymysRepository.findById(kysymysid);
@@ -112,9 +122,11 @@ public class SurveyController {
 	@RequestMapping(value ="/poistavalinta/{valintaid}")
 	public String poistaValinta(@PathVariable("valintaid") Long valintaid, Model model) {
 
+		Optional<Monivalinta> monivalinta = monivalintaRepository.findById(valintaid);
 		monivalintaRepository.deleteById(valintaid);
 
-		return "redirect:../muokkaakysely";
+		Kysymys kysymys = monivalinta.get().getKysymys();
+		return "redirect:../muokkaakysymys/" + kysymys.getKysymysid();
 	}
 	
 	@RequestMapping("/api/kysely") 

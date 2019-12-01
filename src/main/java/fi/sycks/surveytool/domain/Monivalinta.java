@@ -23,6 +23,7 @@ public class Monivalinta {
 	
 	private String valintanimi;
 	
+	@JsonIgnore
 	private long järjestysNumero;
 	
 	@JsonIgnore

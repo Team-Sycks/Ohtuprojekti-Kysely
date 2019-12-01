@@ -22,28 +22,27 @@
 				 <div style="clear: both; display: block; height: 10px;"></div> -->
 				
 				<p>Kysymystyyppi: <select  style="width: 300px" id="deplist" th:field="*{tyyppi}" class="form-control"> 
-       		<option th:each="tyyppi: ${tyypit}" th:value="${tyyppi}" th:text="${tyyppi}"></option>
-    	</select> </p>
+       				<option th:each="tyyppi: ${tyypit}" th:value="${tyyppi}" th:text="${tyyppi}"></option>
+    			</select> </p>
+    			<input type="submit" value="Tallenna" class="btn btn-md btn-success "></input>
+    			<a th:href="@{'/muokkaakysely/'+ *{kysely.kyselyid}}" class="btn btn-primary">Takaisin</a>
+    	</form>
+    		<div style="clear: both; display: block; height: 10px;"></div>
 			
-			<p>Monivalinta vaihtoehto: <input type="text" th:field="${monivalinta.valintanimi}" /></p>
-			
-			
-			<input type="submit" value="Lisää vaihtoehto" class="btn btn-md btn-success "></input>
-				<div style="clear: both; display: block; height: 10px;"></div>
-				<input type="submit" value="Tallenna" class="btn btn-md btn-success "></input>
-			
-				<div style="clear: both; display: block; height: 10px;"></div>
-				<!-- <a th:href="/muokkaakysely/__*{kysely.kyselyid}__" class="btn btn-primary">Takaisin</a>-->
-				
-				<a th:href="@{'/muokkaakysely/'+ *{kysely.kyselyid}}" class="btn btn-primary">Takaisin</a>
-				
+			<form th:object="${monivalinta}" th:action="@{../tallennavalinta}" action="#" method="post">
+				<input type="hidden" th:field="*{kysymys}"/>
+				<p>Monivalinta vaihtoehto: <input type="text" th:field="*{valintanimi}" /></p>
+				<input type="submit" value="Lisää vaihtoehto" class="btn btn-md btn-success "></input>
 			</form>
-			<table>
+			
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+		<table>
 			<tr th:each="monivalinta: ${monivalinnat}">
 			<td th:text="${monivalinta.valintanimi}"></td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/poistavalinta/{id}(id=${monivalinta.valintaid})}" class="btn btn-danger">Poista</a></td>
 			</tr>
-	</table>
+		</table>
     </div>
 </div>
 </body>
