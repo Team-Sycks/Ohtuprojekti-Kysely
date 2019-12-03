@@ -144,7 +144,18 @@ public class SurveyController {
 	public @ResponseBody List<Kysymys> getAllKysymyksetByKyselyIdREST(@PathVariable("kyselyid") long kyselyid){
 		Optional<Kysely> kysely = kyselyRepository.findById(kyselyid);
 		if(kysely.get() == null) return new ArrayList<>();
-		return (List<Kysymys>) kysymysRepository.findByKysely(kysely.get());
+		List<Kysymys> kysymykset = (List<Kysymys>) kysymysRepository.findByKysely(kysely.get());
+		
+		for(Kysymys kysymys : kysymykset) {
+			List<Monivalinta> valinnat = kysymys.getMonivalinnat();
+			
+			List<String> list = new ArrayList<>();
+			for(Monivalinta valinta : valinnat) {
+				list.add(valinta.getValintanimi());
+			}
+			kysymys.setValinnat(list);
+		}
+		return kysymykset;
 	}
 	
 	@RequestMapping("/api/monivalinta/{kysymysid}")

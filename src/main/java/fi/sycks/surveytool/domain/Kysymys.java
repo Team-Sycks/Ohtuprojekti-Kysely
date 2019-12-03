@@ -44,6 +44,9 @@ public class Kysymys {
 	@OneToMany(cascade=CascadeType.ALL, mappedBy ="kysymys")
 	private List<Monivalinta> monivalinnat;
 
+	@Transient
+	List<String> valinnat;
+	
 	public Kysymys() {
 	}
 
@@ -118,5 +121,15 @@ public class Kysymys {
 	public void setMonivalinnat(List<Monivalinta> monivalinnat) {
 		this.monivalinnat = monivalinnat;
 	}
+
+	public List<String> getValinnat() {
+		return valinnat;
+	}
+
+	public void setValinnat(List<String> valinnat) {
+		this.valinnat = valinnat;
+	}
+	
+	
 
 }
