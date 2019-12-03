@@ -6,10 +6,17 @@
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 <style>
+	h1 {
+	font-family:arial, sans-serif;
+	color: blue;
+	text-align: center;
+	}
+	
 	table {
   	font-family: arial, sans-serif;
  	border-collapse: collapse;
-  	width: 100%;
+  	width: 95%;
+  	margin: auto;
 	}
 
 	td, th {
@@ -23,7 +30,9 @@
 	}
 </style>
 <body>
-	<div class="col-md-4" style="padding:20px 0">
+	<h1>Kyselytyökalu</h1>
+
+	<div class="col-md-4" style="margin:20px 20px 20px 25px">
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
 		</form>
@@ -44,7 +53,7 @@
 					<td><a th:href="@{/poistakysely/__${survey.kyselyid}__}" class="btn btn-md btn-danger" onclick="return confirm('Haluatko varmasti poistaa kyselyn?');">Poista</a></td>
 				</tr>
 	</table>
-	<div class="col-md-4" style="padding:20px 0">
+	<div class="col-md-4" style="margin:20px 20px 20px 25px">
 		<form th:action="@{/lisaa}" method="post">
 			<input type="submit" value="Lisää kysely" class="btn btn-sm btn-success"/>
 		</form>

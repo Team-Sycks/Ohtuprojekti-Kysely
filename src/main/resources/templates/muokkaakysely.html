@@ -25,9 +25,8 @@
 </style>
 <body>
 	<div class="container">
-	<h3>Muokkaa kyselyn tietoja</h3>
 	<div class="col-md-4">
-	
+		<h3>Muokkaa kyselyn tietoja</h3>
 		<form th:object="${kysely}" th:action="@{../tallennakysely}" action="#" method="post">
 			<input type="hidden" th:field="*{kyselyid}"/>
 				
@@ -59,7 +58,6 @@
 					<td><a th:text="${kysymys.kysymysteksti}" th:href="@{/katsovastaukset/{kysymysid}(kysymysid=${kysymys.kysymysid})}" ></a></td>
 					<td th:text="${kysymys.tyyppi}"></td>
 					<td><a th:href="@{/muokkaakysymys/__${kysymys.kysymysid}__}" class="btn btn-md btn-default">Muokkaa</a></td>
-					<td th:if ="${kysymys.tyyppi == 'monivalinta'}"><a th:href="@{/muokkaamonivalinta/__${kysymys.kysymysid}__}" class="btn btn-md btn-default">Muokkaa monivalintaa</a></td>
 					<td><a th:href="@{/poistakysymys/__${kysymys.kysymysid}__}" class="btn btn-md btn-danger" onclick="return confirm('Haluatko varmasti poistaa kysymyksen?');">Poista</a></td>
 				</tr>
 	</table>
