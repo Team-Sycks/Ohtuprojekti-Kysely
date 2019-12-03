@@ -12,7 +12,21 @@ public class CounterUtil {
 		List<Duplicate> duplicates = new ArrayList<>();
 		
 		for(Vastaus vastaus : vastaukset) {
-			if(vastaus.getKysymys().getTyyppi() != Kysymys.TYPE_SHORT_TEXT) {
+			if(vastaus.getKysymys().getTyyppi() == Kysymys.TYPE_SHORT_TEXT) continue;
+			
+			for(Vastaus vastaus2 : vastaukset) {
+				if(vastaus.getKysymys().getTyyppi() == Kysymys.TYPE_SHORT_TEXT) continue;
+				if(!vastaus.equals(vastaus2)) {
+					String text = vastaus.getVastausteksti();
+					if(text.equals(vastaus2.getVastausteksti())) {
+						createDuplicate(text, duplicates);
+					}
+				}
+			}
+		}
+		
+		for(Vastaus vastaus : vastaukset) {
+			if(vastaus.getKysymys().getTyyppi() == Kysymys.TYPE_SHORT_TEXT) {
 				String vastausTeksti = vastaus.getVastausteksti().toLowerCase();
 				String[] words = vastausTeksti.split(" ");
 				
@@ -22,19 +36,8 @@ public class CounterUtil {
 						if(i == a) continue;
 						
 						if(words[i].equals(words[a])) {
-							boolean alreadyFound = false;
-							
-							for(Duplicate duplicate : duplicates) {
-								if(duplicate.getName().equals(words[i])) {
-									duplicate.setCount(duplicate.getCount() + 1);
-									alreadyFound = true;
-								}
-							}
-							
-							if(!alreadyFound) {
-								new Duplicate(words[i], 2);
-							}
-									
+
+							createDuplicate(words[i], duplicates);
 						}
 					}
 				}
@@ -42,5 +45,20 @@ public class CounterUtil {
 		}
 		
 		return duplicates;
+	}
+	
+	private static void createDuplicate(String word, List<Duplicate> duplicates) {
+		boolean alreadyFound = false;
+		
+		for(Duplicate duplicate : duplicates) {
+			if(duplicate.getName().equals(word)) {
+				duplicate.setCount(duplicate.getCount() + 1);
+				alreadyFound = true;
+			}
+		}
+		
+		if(!alreadyFound) {
+			duplicates.add(new Duplicate(word, 2));
+		}
 	}
 }
