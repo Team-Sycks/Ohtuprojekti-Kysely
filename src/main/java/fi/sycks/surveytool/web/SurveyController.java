@@ -91,13 +91,19 @@ public class SurveyController {
 		tyypit.add(Kysymys.TYPE_NUMBER);
 		tyypit.add(Kysymys.TYPE_SHORT_TEXT);
 		model.addAttribute("tyypit", tyypit);
-		
+
+		return "muokkaakysymys";	
+	}
+	@RequestMapping("/muokkaamonivalinta/{kysymysid}")
+	public String muokkaaMonivalinta(@PathVariable("kysymysid") Long kysymysid, Model model) {
+		Kysymys kysymys = kysymysRepository.findById(kysymysid).get();
+		model.addAttribute("kysymys", kysymys);
 		Monivalinta monivalinta = new Monivalinta();
 		monivalinta.setKysymys(kysymys);
 		model.addAttribute("monivalinta", monivalinta);
 		List<Monivalinta> monivalinnat = (List<Monivalinta>) monivalintaRepository.findByKysymys(kysymys);
 		model.addAttribute("monivalinnat", monivalinnat);
-		return "muokkaakysymys";	
+		return "muokkaamonivalinta";
 	}
 	
 	@RequestMapping(value = "/tallennakysymys", method = RequestMethod.POST)
@@ -109,7 +115,7 @@ public class SurveyController {
 	@RequestMapping(value = "/tallennavalinta", method = RequestMethod.POST)
 	public String save(Monivalinta monivalinta) {
 		monivalinta = monivalintaRepository.save(monivalinta);
-		return "redirect:muokkaakysymys/" + monivalinta.getKysymys().getKysymysid();
+		return "redirect:muokkaamonivalinta/" + monivalinta.getKysymys().getKysymysid();
 	}
 	
 	@RequestMapping(value = "/poistakysymys/{kysymysid}")
