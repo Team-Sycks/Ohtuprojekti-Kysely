@@ -44,13 +44,17 @@ public class SurveytoolApplication {
 			vastausRepository.save(new Vastaus("21", vastaaja, ikäKysymys));
 			vastausRepository.save(new Vastaus("Pizza", vastaaja, ruokaKysymys));
 			
+			
+			
 			Vastaaja vastaaja2 = vastaajaRepository.save(new Vastaaja("21.10.2019"));
 			vastausRepository.save(new Vastaus("65", vastaaja2, ikäKysymys));
 			//vastausRepository.save(new Vastaus("Makaroonilaatikko", vastaaja2, ruokaKysymys));
 			Vastaaja vastaaja4 = vastaajaRepository.save(new Vastaaja("21.10.2019"));
 			vastausRepository.save(new Vastaus("12", vastaaja4, ikäKysymys));
 			
-			//Kysely 2
+			
+			
+			//Kysely 2	
 			Kysely kysely2 = kyselyRepository.save(new Kysely("Koulukysely", Kysely.STATUS_DEPLOYED));
 			Kysymys vuosiKysymys = kysymysRepository.save(new Kysymys("Kauan olet opiskellut Haaga-Heliassa?", Kysymys.TYPE_NUMBER, kysely2));
 			Kysymys keskiarvoKysymys = kysymysRepository.save(new Kysymys("Keskiarvosi?", Kysymys.TYPE_SHORT_TEXT, kysely2));
@@ -73,6 +77,9 @@ public class SurveytoolApplication {
 			monivalintaRepository.save(new Monivalinta("Välttävä", 3, digiKysymys1));
 			monivalintaRepository.save(new Monivalinta("Tyytymätön", 4, digiKysymys1));
 			
+			Vastaaja vastaaja5 = vastaajaRepository.save(new Vastaaja("3.12.2019"));
+			vastausRepository.save(new Vastaus("Todella tyytyväinen", vastaaja5, digiKysymys1));
+
 			//DigiKysymys2 valinnat
 			monivalintaRepository.save(new Monivalinta("Todella tyytyväinen", 0, digiKysymys2));
 			monivalintaRepository.save(new Monivalinta("Tyytyväinen", 1, digiKysymys2));
