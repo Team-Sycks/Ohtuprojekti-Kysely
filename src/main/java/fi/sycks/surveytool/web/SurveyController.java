@@ -132,7 +132,7 @@ public class SurveyController {
 		monivalintaRepository.deleteById(valintaid);
 
 		Kysymys kysymys = monivalinta.get().getKysymys();
-		return "redirect:../muokkaakysymys/" + kysymys.getKysymysid();
+		return "redirect:../muokkaamonivalinta/" + kysymys.getKysymysid();
 	}
 	
 	@RequestMapping("/api/kysely") 
