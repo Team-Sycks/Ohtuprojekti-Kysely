@@ -5,7 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import fi.sycks.surveytool.CounterUtil;
 import fi.sycks.surveytool.domain.Kysely;
 import fi.sycks.surveytool.domain.Kysymys;
 import fi.sycks.surveytool.domain.Monivalinta;
@@ -94,6 +97,7 @@ public class SurveyController {
 
 		return "muokkaakysymys";	
 	}
+	
 	@RequestMapping("/muokkaamonivalinta/{kysymysid}")
 	public String muokkaaMonivalinta(@PathVariable("kysymysid") Long kysymysid, Model model) {
 		Kysymys kysymys = kysymysRepository.findById(kysymysid).get();
@@ -182,6 +186,7 @@ public class SurveyController {
 		
 		return kyselyVastaukset;
 	}
+	
 	@RequestMapping("/kaikkivastaukset/kyselyid/{kyselyid}")
 	public String kaikkiVastauksetKyselyyn(@PathVariable("kyselyid") long kyselyid, Model model) {
 		List<Vastaus> vastaukset =  (List<Vastaus>) vastausRepository.findAll();
@@ -202,8 +207,14 @@ public class SurveyController {
 	}
 	@RequestMapping("/katsovastaukset/{kysymysid}")
 	public String katsoVastaukset(@PathVariable("kysymysid") Long kysymysid, Model model) {
-		model.addAttribute("kysymys", kysymysRepository.findById(kysymysid).get());
+		
+		Kysymys kysymys = kysymysRepository.findById(kysymysid).get();
+		model.addAttribute("kysymys", kysymys);
 		model.addAttribute("vastaukset",(List<Vastaus>)vastausRepository.findAll());
+		
+		Map<String, Integer> dups = CounterUtil.countRecurringAnswersForOneKysymys(kysymys);
+	    model.addAttribute("duplicatesMap", dups);
+		
 		return "vastaus";	
 	}
 	

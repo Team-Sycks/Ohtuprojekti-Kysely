@@ -33,13 +33,21 @@
 	</div>
 	<h3>Vastaukset kysymykseen</h3>
 	<table>
-	<th>Vastausaika</th>
-	<th>Vastaus</th>
-	<tr th:each = "vastaus : ${kysymys.vastaukset}">
-					<td th:text="${vastaus.vastaaja.vastausaika}"></td>
-					<td th:text="${vastaus.vastausteksti}"></td>
-					</tr>
-			
+		<th>Vastausaika</th>
+		<th>Vastaus</th>
+		<tr th:each = "vastaus : ${kysymys.vastaukset}">
+			<td th:text="${vastaus.vastaaja.vastausaika}"></td>
+			<td th:text="${vastaus.vastausteksti}"></td>
+		</tr>
+	</table>
+	<h3>Toistuvat vastaukset tai sanat</h3>
+	<table>
+		<th>Vastaus</th>
+		<th>Kertaa</th>
+		<tr th:each="instance : ${duplicatesMap}">
+		    <td th:text="${instance.key}"></td>
+		    <td th:text="${instance.value}"></td>
+		</tr>
 	</table>
 	</div>
      

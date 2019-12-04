@@ -1,64 +1,68 @@
 package fi.sycks.surveytool;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import fi.sycks.surveytool.domain.Duplicate;
 import fi.sycks.surveytool.domain.Kysymys;
 import fi.sycks.surveytool.domain.Vastaus;
 
 public class CounterUtil {
-	public static List<Duplicate> findDuplicateWordsInAnswer(List<Vastaus> vastaukset){
-		List<Duplicate> duplicates = new ArrayList<>();
+	
+	public static Map<String, Integer> countRecurringAnswersForOneKysymys(Kysymys kysymys){
+		List<Vastaus> vastaukset = kysymys.getVastaukset();
 		
-		for(Vastaus vastaus : vastaukset) {
-			if(vastaus.getKysymys().getTyyppi() == Kysymys.TYPE_SHORT_TEXT) continue;
-			
-			for(Vastaus vastaus2 : vastaukset) {
-				if(vastaus.getKysymys().getTyyppi() == Kysymys.TYPE_SHORT_TEXT) continue;
-				if(!vastaus.equals(vastaus2)) {
-					String text = vastaus.getVastausteksti();
-					if(text.equals(vastaus2.getVastausteksti())) {
-						createDuplicate(text, duplicates);
-					}
-				}
-			}
-		}
 		
-		for(Vastaus vastaus : vastaukset) {
-			if(vastaus.getKysymys().getTyyppi() == Kysymys.TYPE_SHORT_TEXT) {
-				String vastausTeksti = vastaus.getVastausteksti().toLowerCase();
-				String[] words = vastausTeksti.split(" ");
-				
-				
-				for(int i=0; i<words.length; i++) {
-					for(int a=0; a<words.length; a++) {
-						if(i == a) continue;
-						
-						if(words[i].equals(words[a])) {
-
-							createDuplicate(words[i], duplicates);
-						}
-					}
-				}
-			}
+		Map<String, Integer> duplicates;
+		if(kysymys.getTyyppi() == Kysymys.TYPE_SHORT_TEXT) {
+			duplicates = CounterUtil.findDuplicateWordsInTextAnswer(vastaukset);
+		} else {
+			duplicates = CounterUtil.findDuplicateAnswers(vastaukset);
 		}
 		
 		return duplicates;
 	}
 	
-	private static void createDuplicate(String word, List<Duplicate> duplicates) {
-		boolean alreadyFound = false;
-		
-		for(Duplicate duplicate : duplicates) {
-			if(duplicate.getName().equals(word)) {
-				duplicate.setCount(duplicate.getCount() + 1);
-				alreadyFound = true;
+	private static Map<String, Integer> findDuplicateWordsInTextAnswer(List<Vastaus> vastaukset){
+		Map<String, Integer> duplicates = new HashMap<String, Integer>();
+
+		for(Vastaus vastaus : vastaukset) {
+			String vastausTeksti = vastaus.getVastausteksti().toLowerCase();
+			String[] words = vastausTeksti.split(" ");
+			
+			for(int i=0; i<words.length; i++) {
+				createDuplicate(words[i], duplicates);
 			}
 		}
+
+		duplicates.values().remove(1);
 		
-		if(!alreadyFound) {
-			duplicates.add(new Duplicate(word, 2));
+		return duplicates;
+	}
+	
+	private static Map<String, Integer> findDuplicateAnswers(List<Vastaus> vastaukset) {
+		Map<String, Integer> duplicates = new HashMap<String, Integer>();
+		
+		for(Vastaus vastaus : vastaukset) {
+			String vastausTeksti = vastaus.getVastausteksti().toLowerCase();
+			
+			createDuplicate(vastausTeksti, duplicates);
+		}
+		
+		return duplicates;
+	}
+	
+	private static void createDuplicate(String word, Map<String, Integer> duplicates) {
+		
+		//Capitalize the word
+		word = word.substring(0, 1).toUpperCase() + word.substring(1);
+		
+		if(duplicates.containsKey(word)) {
+			duplicates.put(word, duplicates.get(word) + 1);
+		} else {
+			duplicates.put(word, 1);
 		}
 	}
 }

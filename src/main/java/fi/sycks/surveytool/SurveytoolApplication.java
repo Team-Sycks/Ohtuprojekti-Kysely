@@ -44,14 +44,12 @@ public class SurveytoolApplication {
 			vastausRepository.save(new Vastaus("21", vastaaja, ikäKysymys));
 			vastausRepository.save(new Vastaus("Pizza", vastaaja, ruokaKysymys));
 			
-			
-			
 			Vastaaja vastaaja2 = vastaajaRepository.save(new Vastaaja("21.10.2019"));
 			vastausRepository.save(new Vastaus("65", vastaaja2, ikäKysymys));
-			//vastausRepository.save(new Vastaus("Makaroonilaatikko", vastaaja2, ruokaKysymys));
+			vastausRepository.save(new Vastaus("Makaroonilaatikko", vastaaja2, ruokaKysymys));
 			Vastaaja vastaaja4 = vastaajaRepository.save(new Vastaaja("21.10.2019"));
 			vastausRepository.save(new Vastaus("12", vastaaja4, ikäKysymys));
-			
+			vastausRepository.save(new Vastaus("Pizza", vastaaja4, ruokaKysymys));
 			
 			
 			//Kysely 2	
