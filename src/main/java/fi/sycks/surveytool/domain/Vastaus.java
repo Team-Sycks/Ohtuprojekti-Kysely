@@ -22,9 +22,11 @@ public class Vastaus {
 	private Vastaaja vastaaja;
 	
 	@ManyToOne
-	
+	@JsonIgnore
 	@JoinColumn(name="kysymysid")
 	private Kysymys kysymys;
+	
+	private long kysymysIdJson;
 	
 	public Vastaus() {}
 
@@ -83,7 +85,12 @@ public class Vastaus {
 		else
 			return "Vastaus [vastausid=" + vastausid + ", vastausteksti=" + vastausteksti + "]";
 	}
-	
-	
 
+	public long getKysymysIdJson() {
+		return kysymysIdJson;
+	}
+
+	public void setKysymysIdJson(long kysymysIdJson) {
+		this.kysymysIdJson = kysymysIdJson;
+	}
 }

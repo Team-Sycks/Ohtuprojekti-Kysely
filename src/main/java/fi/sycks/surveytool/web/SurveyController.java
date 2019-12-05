@@ -146,8 +146,17 @@ public class SurveyController {
 	
 	@RequestMapping("/api/kysymys/{kysymysid}") 
 	public @ResponseBody Kysymys getKysymysteksti(@PathVariable("kysymysid") Long kysymysid){
-		System.out.println(kysymysRepository.findByKysymysid(kysymysid));
-		return kysymysRepository.findByKysymysid(kysymysid);
+		Kysymys kysymys = kysymysRepository.findByKysymysid(kysymysid);
+		
+		List<Monivalinta> valinnat = kysymys.getMonivalinnat();
+		
+		List<String> list = new ArrayList<>();
+		for(Monivalinta valinta : valinnat) {
+			list.add(valinta.getValintanimi());
+		}
+		kysymys.setValinnat(list);
+		
+		return kysymys;
 	}
 
 	@RequestMapping("/api/kysymys/kyselyid/{kyselyid}")
@@ -185,6 +194,7 @@ public class SurveyController {
 			for(Vastaus vastaus : vastaukset) {
 				Kysymys kysymys = vastaus.getKysymys();
 				if(kysymys.getKysely().getKyselyid() == kysely.get().getKyselyid()) {
+					vastaus.setKysymysIdJson(kysymys.getKysymysid());
 					kyselyVastaukset.add(vastaus);
 				}
 			}		
