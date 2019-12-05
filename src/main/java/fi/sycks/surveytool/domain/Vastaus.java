@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,9 +23,13 @@ public class Vastaus {
 	private Vastaaja vastaaja;
 	
 	@ManyToOne
-	
+	@JsonIgnore
 	@JoinColumn(name="kysymysid")
 	private Kysymys kysymys;
+	
+	//For JSON
+	@Transient
+	private long kysymysid;
 	
 	public Vastaus() {}
 
@@ -83,7 +88,13 @@ public class Vastaus {
 		else
 			return "Vastaus [vastausid=" + vastausid + ", vastausteksti=" + vastausteksti + "]";
 	}
-	
-	
+
+	public long getKysymysid() {
+		return kysymysid;
+	}
+
+	public void setKysymysid(long kysymysid) {
+		this.kysymysid = kysymysid;
+	}
 
 }
