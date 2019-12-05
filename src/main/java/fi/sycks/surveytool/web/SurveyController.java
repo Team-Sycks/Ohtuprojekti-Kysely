@@ -194,7 +194,7 @@ public class SurveyController {
 			for(Vastaus vastaus : vastaukset) {
 				Kysymys kysymys = vastaus.getKysymys();
 				if(kysymys.getKysely().getKyselyid() == kysely.get().getKyselyid()) {
-					vastaus.setKysymysIdJson(kysymys.getKysymysid());
+					vastaus.setKysymysid(kysymys.getKysymysid());
 					kyselyVastaukset.add(vastaus);
 				}
 			}		

@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,7 +27,9 @@ public class Vastaus {
 	@JoinColumn(name="kysymysid")
 	private Kysymys kysymys;
 	
-	private long kysymysIdJson;
+	//For JSON
+	@Transient
+	private long kysymysid;
 	
 	public Vastaus() {}
 
@@ -86,11 +89,12 @@ public class Vastaus {
 			return "Vastaus [vastausid=" + vastausid + ", vastausteksti=" + vastausteksti + "]";
 	}
 
-	public long getKysymysIdJson() {
-		return kysymysIdJson;
+	public long getKysymysid() {
+		return kysymysid;
 	}
 
-	public void setKysymysIdJson(long kysymysIdJson) {
-		this.kysymysIdJson = kysymysIdJson;
+	public void setKysymysid(long kysymysid) {
+		this.kysymysid = kysymysid;
 	}
+
 }
