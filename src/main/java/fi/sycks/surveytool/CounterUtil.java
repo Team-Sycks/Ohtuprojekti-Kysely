@@ -14,7 +14,6 @@ public class CounterUtil {
 	public static Map<String, Integer> countRecurringAnswersForOneKysymys(Kysymys kysymys){
 		List<Vastaus> vastaukset = kysymys.getVastaukset();
 		
-		
 		Map<String, Integer> duplicates;
 		if(kysymys.getTyyppi() == Kysymys.TYPE_SHORT_TEXT) {
 			duplicates = CounterUtil.findDuplicateWordsInTextAnswer(vastaukset);
@@ -29,7 +28,7 @@ public class CounterUtil {
 		Map<String, Integer> duplicates = new HashMap<String, Integer>();
 
 		for(Vastaus vastaus : vastaukset) {
-			String vastausTeksti = vastaus.getVastausteksti().toLowerCase();
+			String vastausTeksti = vastaus.getVastausteksti();
 			String[] words = vastausTeksti.split(" ");
 			
 			for(int i=0; i<words.length; i++) {
@@ -46,7 +45,7 @@ public class CounterUtil {
 		Map<String, Integer> duplicates = new HashMap<String, Integer>();
 		
 		for(Vastaus vastaus : vastaukset) {
-			String vastausTeksti = vastaus.getVastausteksti().toLowerCase();
+			String vastausTeksti = vastaus.getVastausteksti();
 			
 			createDuplicate(vastausTeksti, duplicates);
 		}
@@ -55,10 +54,6 @@ public class CounterUtil {
 	}
 	
 	private static void createDuplicate(String word, Map<String, Integer> duplicates) {
-		
-		//Capitalize the word
-		word = word.substring(0, 1).toUpperCase() + word.substring(1);
-		
 		if(duplicates.containsKey(word)) {
 			duplicates.put(word, duplicates.get(word) + 1);
 		} else {
