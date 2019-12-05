@@ -32,13 +32,11 @@
 	<h3>Vastaukset kyselyyn</h3>
 	<table>
 		<tr>
-			<th>Vastausid</th>
 			<th>Vastaajaid</th>
 			<th>Kysymysteksti</th>
 			<th>Vastaus</th>
 		</tr>
 			<tr th:each = "vastaus : ${kaikkivastaukset}">
-				<td th:text="${vastaus.vastausid}">
 				<td th:text="${vastaus.vastaaja.vastaajaid}">
 				<td th:text="${vastaus.kysymys.kysymysteksti}">
 				<td th:text="${vastaus.vastausteksti}"></td>
