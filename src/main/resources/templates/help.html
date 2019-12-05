@@ -73,6 +73,25 @@
 				<td> <b>Code: 404</b> Not found Content: { error : "id not found" }</td>
 			</tr>	
 	</table>
+	
+	<h3>Get one survey with questions </h3>
+	
+	<table>
+		<tr>
+			<th>URL</th>
+			<th>METHOD</th>
+			<th>REQUIRED URL PARAMS</th>
+			<th>SUCCESS RESPONSE EXAMPLE</th>
+			<th>ERROR RESPONSE</th>
+		</tr>
+			<tr >
+				<td> <a>http://188.166.21.32:8080/api/kysymys/kyselyid/{kyselyid}</a> </td>
+				<td> GET </td>
+				<td> {id} To fetch a survey with the given id. </td>
+				<td> <b>Code: 200</b> <br/>Content: [{kysymysid: 10, kysymysteksti: "Ikä?", tyyppi: "numero", valinnat: [ ]}, {kysymysid: 11, kysymysteksti: "Missä?", tyyppi: "vapaa_teksti", valinnat: [ ]}, {kysymysid: 37,kysymysteksti: "What?", tyyppi: "monivalinta", valinnat: ["Yes","Maybe"]}]</p></td>
+				<td> <b>Code: 404</b> Not found Content: { error : "id not found" }</td>
+			</tr>	
+	</table>
 
 	<h1>POST calls </h1>
 
