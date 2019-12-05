@@ -143,6 +143,12 @@ public class SurveyController {
 	public @ResponseBody List<Kysely> getAllKyselyREST(){
 		return (List<Kysely>) kyselyRepository.findAll();
 	}
+	
+	@RequestMapping("/api/kysymys/{kysymysid}") 
+	public @ResponseBody Kysymys getKysymysteksti(@PathVariable("kysymysid") Long kysymysid){
+		System.out.println(kysymysRepository.findByKysymysid(kysymysid));
+		return kysymysRepository.findByKysymysid(kysymysid);
+	}
 
 	@RequestMapping("/api/kysymys/kyselyid/{kyselyid}")
 	public @ResponseBody List<Kysymys> getAllKysymyksetByKyselyIdREST(@PathVariable("kyselyid") long kyselyid){
