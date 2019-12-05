@@ -241,7 +241,7 @@ public class SurveyController {
 		
 		if(vastaukset.length > 0) {
 			Vastaus v = vastaukset[0];
-			long kysymysId= v.getKysymys().getKysymysid();
+			long kysymysId = v.getKysymysid();
 			Optional<Kysymys> kysymys = kysymysRepository.findById(kysymysId);
 			long id = kysymys.get().getKysely().getKyselyid();
 			

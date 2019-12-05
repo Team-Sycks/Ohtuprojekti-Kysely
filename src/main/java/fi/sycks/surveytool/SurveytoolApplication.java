@@ -36,7 +36,7 @@ public class SurveytoolApplication {
 			//Testi dataa
 			
 			//Kysely 1
-			Kysely kysely = kyselyRepository.save(new Kysely("Testi kysely", Kysely.STATUS_NOT_DEPLOYED));
+			Kysely kysely = kyselyRepository.save(new Kysely("Testi kysely", Kysely.STATUS_DEPLOYED));
 			Kysymys ikäKysymys = kysymysRepository.save(new Kysymys("Ikä?", Kysymys.TYPE_NUMBER, kysely));
 			Kysymys ruokaKysymys = kysymysRepository.save(new Kysymys("Lempiruoka?", Kysymys.TYPE_SHORT_TEXT, kysely));
 			
