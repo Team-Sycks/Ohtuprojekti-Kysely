@@ -5,7 +5,27 @@
 	<meta http-equiv="Content-Type" content="text/html" charset= "UTF-8">
 	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 </head>
+<style>
+	table {
+  	font-family: arial, sans-serif;
+ 	border-collapse: collapse;
+  	width: 100%;
+	}
+
+	td, th {
+	border: 1px solid #dddddd;
+  	text-align: left;
+  	padding: 8px;
+	}
+
+	tr:nth-child(even) {
+  	background-color: #dddddd;
+	}
+</style>
 <body>
+	<div class="container">
+	<h3>Lisää tai poista monivalinta vaihtoehtoja</h3>
+	<div class="col-md-4">
 <form th:object="${monivalinta}" th:action="@{../tallennavalinta}" action="#" method="post">
 				<input type="hidden" th:field="*{kysymys}"/>
 				<p>Monivalinta vaihtoehto: <input type="text" th:field="*{valintanimi}" /></p>
