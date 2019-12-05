@@ -242,6 +242,7 @@ public class SurveyController {
 		if(vastaukset.length > 0) {
 			Vastaus v = vastaukset[0];
 			long kysymysId = v.getKysymysid();
+			
 			Optional<Kysymys> kysymys = kysymysRepository.findById(kysymysId);
 			long id = kysymys.get().getKysely().getKyselyid();
 			
@@ -257,6 +258,10 @@ public class SurveyController {
 		Vastaaja vastaaja = new Vastaaja(dtf.format(now) + "");
 		vastaajaRepository.save(vastaaja);
 		for(Vastaus vastaus : vastaukset) {
+			long kysymysId = vastaus.getKysymysid();
+			
+			Optional<Kysymys> kysymys = kysymysRepository.findById(kysymysId);
+			vastaus.setKysymys(kysymys.get());
 			vastaus.setVastaaja(vastaaja);
 			vastausRepository.save(vastaus);
 		}
